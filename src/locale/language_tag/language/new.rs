@@ -1,26 +1,23 @@
 use crate::locale::Language;
 
-impl<'a> Language<'a> {
-    /// Creates a new [`Language`] without checking the contents
-    pub const unsafe fn new_unchecked(tag: &'a [u8]) -> Self {
-        assert!(tag.len() <= Self::MAX_LENGTH);
-        assert!(tag.len() > 0);
-        Language { tag }
-    }
-
-    /// Creates new [`Language`], checking if the contents are valid
-    pub fn new<T: AsRef<[u8]>>(tag: &'a T) -> Option<Self> {
-        let tag = tag.as_ref();
-        if tag.len() == 0 || tag.len() > Self::MAX_LENGTH {
+impl Language {
+    /// Creates new [`Language`] from `tag` validating its contents
+    pub const fn new(tag: &[u8]) -> Option<Self> {
+        if tag.len() > Self::MAX_LENGTH {
             return None;
         }
 
-        for byte in tag {
-            if !byte.is_ascii_alphanumeric() {
+        let mut owned_tag = [0; Self::MAX_LENGTH];
+        let mut i = 0;
+        while i < tag.len() {
+            if !tag[i].is_ascii_alphanumeric() {
                 return None;
             }
+
+            owned_tag[i] = tag[i];
+            i += 1;
         }
 
-        Some(unsafe { Language::new_unchecked(tag) })
+        Some(Language { tag: owned_tag })
     }
 }
