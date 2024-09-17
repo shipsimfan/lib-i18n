@@ -1,8 +1,13 @@
 /// A primary language subtag
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Language {
     tag: [u8; Self::MAX_LENGTH],
 }
 
+mod as_ref;
+mod display;
+mod eq;
+mod iter;
 mod new;
 
 impl Language {

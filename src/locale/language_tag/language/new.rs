@@ -3,7 +3,7 @@ use crate::locale::Language;
 impl Language {
     /// Creates new [`Language`] from `tag` validating its contents
     pub const fn new(tag: &[u8]) -> Option<Self> {
-        if tag.len() > Self::MAX_LENGTH {
+        if tag.len() == 0 || tag.len() > Self::MAX_LENGTH {
             return None;
         }
 
@@ -14,7 +14,7 @@ impl Language {
                 return None;
             }
 
-            owned_tag[i] = tag[i];
+            owned_tag[i] = tag[i].to_ascii_lowercase();
             i += 1;
         }
 
