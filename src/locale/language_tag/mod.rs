@@ -6,6 +6,7 @@ mod variant;
 pub use language::Language;
 pub use region::Region;
 pub use script::Script;
+pub use variant::Variant;
 
 /// A simplified BCP-47 language tag
 pub struct LanguageTag {
@@ -17,4 +18,7 @@ pub struct LanguageTag {
 
     /// The region the speaker's dialect is from
     pub region: Option<Region>,
+
+    /// The variants of the specific language
+    pub variants: Option<Box<[Variant]>>,
 }
