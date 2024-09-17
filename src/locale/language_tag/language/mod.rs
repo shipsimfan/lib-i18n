@@ -14,6 +14,9 @@ impl Language {
     /// The maximum length a language subtag can be
     pub const MAX_LENGTH: usize = 8;
 
+    /// The minimum length a language subtag can be
+    pub const MIN_LENGTH: usize = 2;
+
     /// Gets the length of this language
     pub const fn len(&self) -> usize {
         let mut len = 0;
@@ -25,7 +28,7 @@ impl Language {
 
     /// Gets the language as a [`u8`] slice
     pub fn as_slice(&self) -> &[u8] {
-        &self.tag
+        &self.tag[..self.len()]
     }
 
     /// Gets the language as a [`str`]

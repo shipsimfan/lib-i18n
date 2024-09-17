@@ -1,7 +1,7 @@
-use crate::locale::Language;
+use crate::locale::Region;
 
-impl Language {
-    /// Creates new [`Language`] from `tag` validating its contents
+impl Region {
+    /// Creates new [`Region`] from `tag` validating its contents
     pub const fn new(tag: &[u8]) -> Option<Self> {
         if tag.len() < Self::MIN_LENGTH || tag.len() > Self::MAX_LENGTH {
             return None;
@@ -14,10 +14,10 @@ impl Language {
                 return None;
             }
 
-            owned_tag[i] = tag[i].to_ascii_lowercase();
+            owned_tag[i] = tag[i].to_ascii_uppercase();
             i += 1;
         }
 
-        Some(Language { tag: owned_tag })
+        Some(Region { tag: owned_tag })
     }
 }
