@@ -3,6 +3,8 @@ mod region;
 mod script;
 mod variant;
 
+mod display;
+
 pub use language::Language;
 pub use region::Region;
 pub use script::Script;

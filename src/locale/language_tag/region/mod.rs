@@ -1,7 +1,7 @@
 /// A region or country subtag
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Region {
-    tag: [u8; Self::MAX_LENGTH],
+    tag: [u8; Self::LENGTH],
 }
 
 mod as_ref;
@@ -10,7 +10,13 @@ mod eq;
 mod iter;
 mod new;
 
+#[cfg(test)]
+mod tests;
+
 impl Region {
+    /// The length of the underlying array
+    const LENGTH: usize = 4;
+
     /// The maximum length a region subtag can be
     pub const MAX_LENGTH: usize = 3;
 
@@ -19,11 +25,7 @@ impl Region {
 
     /// Gets the length of this region
     pub const fn len(&self) -> usize {
-        let mut len = 0;
-        while len < Self::MAX_LENGTH && self.tag[len] != 0 {
-            len += 1;
-        }
-        len
+        (u32::from_le_bytes(self.tag).ilog2() as usize / 8) + 1
     }
 
     /// Gets the region as a [`u8`] slice

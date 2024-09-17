@@ -3,7 +3,7 @@ use crate::locale::Variant;
 impl Variant {
     /// Creates new [`Variant`] from `tag` validating its contents
     pub const fn new(tag: &[u8]) -> Option<Self> {
-        if tag.len() != 0 || tag.len() > Self::MAX_LENGTH {
+        if tag.len() == 0 || tag.len() > Self::MAX_LENGTH {
             return None;
         }
 

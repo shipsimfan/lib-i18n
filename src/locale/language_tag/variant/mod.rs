@@ -10,17 +10,16 @@ mod eq;
 mod iter;
 mod new;
 
+#[cfg(test)]
+mod tests;
+
 impl Variant {
     /// The maximum length a variant subtag can be
     pub const MAX_LENGTH: usize = 8;
 
     /// Gets the length of this variant
     pub const fn len(&self) -> usize {
-        let mut len = 0;
-        while len < Self::MAX_LENGTH && self.tag[len] != 0 {
-            len += 1;
-        }
-        len
+        (u64::from_le_bytes(self.tag).ilog2() as usize / 8) + 1
     }
 
     /// Gets the variant as a [`u8`] slice

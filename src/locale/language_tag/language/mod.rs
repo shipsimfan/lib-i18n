@@ -10,6 +10,9 @@ mod eq;
 mod iter;
 mod new;
 
+#[cfg(test)]
+mod tests;
+
 impl Language {
     /// The maximum length a language subtag can be
     pub const MAX_LENGTH: usize = 8;
@@ -19,11 +22,7 @@ impl Language {
 
     /// Gets the length of this language
     pub const fn len(&self) -> usize {
-        let mut len = 0;
-        while len < Self::MAX_LENGTH && self.tag[len] != 0 {
-            len += 1;
-        }
-        len
+        (u64::from_le_bytes(self.tag).ilog2() as usize / 8) + 1
     }
 
     /// Gets the language as a [`u8`] slice
