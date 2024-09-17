@@ -6,6 +6,12 @@ impl AsRef<[u8]> for Language {
     }
 }
 
+impl AsRef<str> for Language {
+    fn as_ref(&self) -> &str {
+        self.as_str()
+    }
+}
+
 impl std::ops::Deref for Language {
     type Target = [u8];
 

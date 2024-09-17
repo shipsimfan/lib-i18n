@@ -6,6 +6,12 @@ impl AsRef<[u8]> for Region {
     }
 }
 
+impl AsRef<str> for Region {
+    fn as_ref(&self) -> &str {
+        self.as_str()
+    }
+}
+
 impl std::ops::Deref for Region {
     type Target = [u8];
 

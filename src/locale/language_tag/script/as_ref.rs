@@ -6,6 +6,12 @@ impl AsRef<[u8]> for Script {
     }
 }
 
+impl AsRef<str> for Script {
+    fn as_ref(&self) -> &str {
+        self.as_str()
+    }
+}
+
 impl std::ops::Deref for Script {
     type Target = [u8];
 

@@ -6,6 +6,12 @@ impl AsRef<[u8]> for Variant {
     }
 }
 
+impl AsRef<str> for Variant {
+    fn as_ref(&self) -> &str {
+        self.as_str()
+    }
+}
+
 impl std::ops::Deref for Variant {
     type Target = [u8];
 
