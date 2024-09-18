@@ -1,5 +1,5 @@
 /// An invalid language tag was parsed
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum InvalidLanguageTag {
     /// The language identifier was not valid
     InvalidLanguage,

@@ -1,4 +1,4 @@
-use crate::locale::{Language, LanguageTag, Region, Script, Variant};
+use crate::locale::{InvalidLanguageTag, Language, LanguageTag, Region, Script, Variant};
 use std::borrow::Cow;
 
 #[test]
@@ -63,4 +63,44 @@ fn rm_sursilv() {
 
     assert_eq!(output, TARGET);
     println!("{}", output);
+}
+
+#[test]
+fn empty() {
+    const INPUT: &[u8] = b"";
+
+    assert_eq!(
+        LanguageTag::new(INPUT),
+        Err(InvalidLanguageTag::InvalidLanguage)
+    );
+}
+
+#[test]
+fn on_char_language() {
+    const INPUT: &[u8] = b"a";
+
+    assert_eq!(
+        LanguageTag::new(INPUT),
+        Err(InvalidLanguageTag::InvalidLanguage)
+    );
+}
+
+#[test]
+fn trailing_dash() {
+    const INPUT: &[u8] = b"ab-";
+
+    assert_eq!(
+        LanguageTag::new(INPUT),
+        Err(InvalidLanguageTag::InvalidVariant)
+    );
+}
+
+#[test]
+fn invalid_character() {
+    const INPUT: &[u8] = b"ab Test";
+
+    assert_eq!(
+        LanguageTag::new(INPUT),
+        Err(InvalidLanguageTag::InvalidLanguage)
+    );
 }
