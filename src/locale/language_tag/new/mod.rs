@@ -9,6 +9,19 @@ mod tests;
 pub use error::InvalidLanguageTag;
 
 impl LanguageTag {
+    /// Creates a new [`LanguageTag`] from a `tag` containing just a language
+    pub const fn from_language(tag: &[u8]) -> Result<Self, InvalidLanguageTag> {
+        Ok(LanguageTag {
+            language: match Language::new(tag) {
+                Some(language) => language,
+                None => return Err(InvalidLanguageTag::InvalidLanguage),
+            },
+            script: None,
+            region: None,
+            variants: Cow::Borrowed(&[]),
+        })
+    }
+
     /// Attempts to parse `tag` in to a new [`LanguageTag`]
     pub fn new(tag: &[u8]) -> Result<Self, InvalidLanguageTag> {
         let mut i = 0;
