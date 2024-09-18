@@ -10,12 +10,14 @@ pub use error::InvalidLanguageTag;
 
 impl LanguageTag {
     /// Creates a new [`LanguageTag`] from a `tag` containing just a language
-    pub const fn from_language(tag: &[u8]) -> Result<Self, InvalidLanguageTag> {
-        Ok(LanguageTag {
-            language: match Language::new(tag) {
-                Some(language) => language,
-                None => return Err(InvalidLanguageTag::InvalidLanguage),
-            },
+    pub const fn from_language(tag: &[u8]) -> Option<Self> {
+        let language = match Language::new(tag) {
+            Some(language) => language,
+            None => return None,
+        };
+
+        Some(LanguageTag {
+            language,
             script: None,
             region: None,
             variants: Cow::Borrowed(&[]),
