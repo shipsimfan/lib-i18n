@@ -8,14 +8,12 @@ impl std::fmt::Display for LanguageTag {
             write!(f, "-{}", script)?;
         }
 
-        if let Some(region) = self.script {
+        if let Some(region) = self.region {
             write!(f, "-{}", region)?;
         }
 
-        if let Some(variants) = &self.variants {
-            for variant in variants {
-                write!(f, "-{}", variant)?;
-            }
+        for variant in self.variants.iter() {
+            write!(f, "-{}", variant)?;
         }
 
         Ok(())
