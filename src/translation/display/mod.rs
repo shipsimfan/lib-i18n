@@ -9,5 +9,5 @@ pub struct MessageDisplay<'a, A> {
     message: &'a Message<A>,
 
     /// The arguments to use
-    arguments: A,
+    arguments: &'a A,
 }

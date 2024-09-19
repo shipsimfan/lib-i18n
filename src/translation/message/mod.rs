@@ -10,7 +10,7 @@ pub struct Message<A> {
 
 impl<A> Message<A> {
     /// Gets an item which can display this message with `arguments`
-    pub const fn display(&self, arguments: A) -> MessageDisplay<A> {
+    pub const fn display<'a>(&'a self, arguments: &'a A) -> MessageDisplay<'a, A> {
         MessageDisplay::new(self, arguments)
     }
 }

@@ -3,8 +3,8 @@
  3. Add `message_key!` macro for making key creation simpler and standardized for the `m!` macro
    - Inputs:
      - Key constant name
-     - Argument structure shape
-     - Messages as `tag => |args, f| { body }` or `tag => function_name` pairs
+     - Optional argument structure shape or type name
+     - Messages as `tag => |args, f| { body }`, `tag => literal`, or `tag => function_name` pairs
    - Create a `const` holding the message key
    - Create a `struct` with the same name for the arguments
  4. Add getting current user's language
