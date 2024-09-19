@@ -5,6 +5,7 @@ mod region;
 mod script;
 mod variant;
 
+mod clone;
 mod display;
 mod new;
 
@@ -15,8 +16,8 @@ pub use script::Script;
 pub use variant::Variant;
 
 /// A simplified BCP-47 language tag
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct LanguageTag {
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub struct LanguageTag<'a> {
     /// The primary language tag
     pub language: Language,
 
@@ -27,5 +28,5 @@ pub struct LanguageTag {
     pub region: Option<Region>,
 
     /// The variants of the specific language
-    pub variants: Cow<'static, [Variant]>,
+    pub variants: Cow<'a, [Variant]>,
 }

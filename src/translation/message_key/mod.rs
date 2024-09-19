@@ -1,17 +1,12 @@
-use crate::{
-    locale::LanguageTag,
-    translation::{Arguments, Message},
-};
+use messages::Messages;
 
-mod generic;
+mod messages;
 
-pub use generic::GenericMessageKey;
+mod get;
+mod new;
 
 /// A set of [`Message`]s with the same meaning in multiple languages
-pub trait MessageKey {
-    /// The arguments that are to be passed to any [`Message`]
-    type Arguments: Arguments;
-
-    /// Get this message translated to `language`
-    fn get_message<'a>(&'a self, language: &LanguageTag) -> &'a Message<Self::Arguments>;
+pub struct MessageKey<'a, A> {
+    /// The set of messages with their corresponding language
+    messages: Messages<'a, A>,
 }

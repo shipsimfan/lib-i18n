@@ -8,7 +8,7 @@ mod tests;
 
 pub use error::InvalidLanguageTag;
 
-impl LanguageTag {
+impl<'a> LanguageTag<'a> {
     /// Creates a new [`LanguageTag`] from a `tag` containing just a language
     pub const fn from_language(tag: &[u8]) -> Option<Self> {
         let language = match Language::new(tag) {

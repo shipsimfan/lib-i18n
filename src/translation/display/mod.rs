@@ -1,7 +1,10 @@
-use crate::translation::{Arguments, Message};
+use crate::translation::Message;
+
+mod display;
+mod new;
 
 /// A message provided with arguments which can be [`Display`](std::fmt::Display)ed
-pub struct MessageDisplay<'a, A: Arguments> {
+pub struct MessageDisplay<'a, A> {
     /// The message to display
     message: &'a Message<A>,
 
