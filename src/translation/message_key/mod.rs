@@ -3,6 +3,7 @@ use messages::Messages;
 mod messages;
 
 mod get;
+mod r#macro;
 mod new;
 
 /// A set of [`Message`]s with the same meaning in multiple languages

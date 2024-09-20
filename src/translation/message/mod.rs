@@ -1,5 +1,6 @@
 use crate::translation::MessageDisplay;
 
+mod r#macro;
 mod new;
 
 /// A message translated into a specific language
