@@ -9,7 +9,8 @@ license = "GPL-3.0-or-later"
 publish = false
 
 [features]
-default = ["std"]
+default = ["current"]
 
 alloc = []
 std = ["alloc"]
+current = ["std"]
