@@ -13,7 +13,7 @@ default = ["current"]
 
 alloc = []
 std = ["alloc"]
-current = ["std"]
+current = ["std", "dep:win32"]
 
 [target.'cfg(windows)'.dependencies]
-win32.git = "https://github.com/shipsimfan/lib-win32"
+win32 = { git = "https://github.com/shipsimfan/lib-win32", optional = true }
