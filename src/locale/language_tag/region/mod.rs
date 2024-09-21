@@ -35,6 +35,6 @@ impl Region {
 
     /// Gets the region as a [`str`]
     pub fn as_str(&self) -> &str {
-        unsafe { std::str::from_utf8_unchecked(self.as_slice()) }
+        unsafe { core::str::from_utf8_unchecked(self.as_slice()) }
     }
 }

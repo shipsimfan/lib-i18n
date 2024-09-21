@@ -6,7 +6,7 @@ impl PartialEq<[u8]> for Language {
             return false;
         }
 
-        for (a, b) in std::iter::zip(self, other) {
+        for (a, b) in core::iter::zip(self, other) {
             if *a != *b {
                 return false;
             }
@@ -34,13 +34,15 @@ impl PartialEq<Language> for str {
     }
 }
 
-impl PartialEq<String> for Language {
-    fn eq(&self, other: &String) -> bool {
+#[cfg(feature = "alloc")]
+impl PartialEq<alloc::string::String> for Language {
+    fn eq(&self, other: &alloc::string::String) -> bool {
         self == other.as_bytes()
     }
 }
 
-impl PartialEq<Language> for String {
+#[cfg(feature = "alloc")]
+impl PartialEq<Language> for alloc::string::String {
     fn eq(&self, other: &Language) -> bool {
         other == self
     }

@@ -12,6 +12,7 @@ impl<'a> LanguageTag<'a> {
     }
 
     /// Converts this [`LanguageTag`] into a owned version
+    #[cfg(feature = "alloc")]
     pub fn to_owned(&self) -> LanguageTag<'static> {
         LanguageTag {
             language: self.language,
@@ -29,7 +30,10 @@ impl LanguageTag<'static> {
             language: self.language,
             script: self.script,
             region: self.region,
+            #[cfg(feature = "alloc")]
             variants: self.variants.clone(),
+            #[cfg(not(feature = "alloc"))]
+            variants: self.variants,
         }
     }
 }

@@ -1,5 +1,4 @@
-use crate::locale::{Language, LanguageTag, Region, Script, Variant};
-use std::borrow::Cow;
+use crate::locale::{Language, LanguageTag};
 
 mod error;
 
@@ -20,12 +19,18 @@ impl<'a> LanguageTag<'a> {
             language,
             script: None,
             region: None,
-            variants: Cow::Borrowed(&[]),
+            #[cfg(feature = "alloc")]
+            variants: alloc::borrow::Cow::Borrowed(&[]),
+            #[cfg(not(feature = "alloc"))]
+            variants: &[],
         })
     }
 
     /// Attempts to parse `tag` in to a new [`LanguageTag`]
+    #[cfg(feature = "alloc")]
     pub fn new(tag: &[u8]) -> Result<Self, InvalidLanguageTag> {
+        use crate::locale::{Region, Script, Variant};
+
         let mut i = 0;
 
         let language =
@@ -57,12 +62,12 @@ impl<'a> LanguageTag<'a> {
             None
         };
 
-        let mut variants = Vec::new();
+        let mut variants = alloc::vec::Vec::new();
         while let Some(variant) = chunk {
             variants.push(Variant::new(variant).ok_or(InvalidLanguageTag::InvalidVariant)?);
             chunk = next_chunk(tag, &mut i);
         }
-        let variants = Cow::Owned(variants);
+        let variants = alloc::borrow::Cow::Owned(variants);
 
         Ok(LanguageTag {
             language,
@@ -73,6 +78,7 @@ impl<'a> LanguageTag<'a> {
     }
 }
 
+#[cfg(feature = "alloc")]
 fn next_chunk<'a>(tag: &'a [u8], i: &mut usize) -> Option<&'a [u8]> {
     if *i >= tag.len() {
         return None;

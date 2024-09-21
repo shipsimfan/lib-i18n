@@ -7,3 +7,9 @@ edition = "2021"
 repository = "https://github.com/shipsimfan/lib-fluent"
 license = "GPL-3.0-or-later"
 publish = false
+
+[features]
+default = ["std"]
+
+alloc = []
+std = ["alloc"]

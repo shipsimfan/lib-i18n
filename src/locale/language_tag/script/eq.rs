@@ -6,7 +6,7 @@ impl PartialEq<[u8]> for Script {
             return false;
         }
 
-        for (a, b) in std::iter::zip(self, other) {
+        for (a, b) in core::iter::zip(self, other) {
             if *a != *b {
                 return false;
             }
@@ -34,13 +34,15 @@ impl PartialEq<Script> for str {
     }
 }
 
-impl PartialEq<String> for Script {
-    fn eq(&self, other: &String) -> bool {
+#[cfg(feature = "alloc")]
+impl PartialEq<alloc::string::String> for Script {
+    fn eq(&self, other: &alloc::string::String) -> bool {
         self == other.as_bytes()
     }
 }
 
-impl PartialEq<Script> for String {
+#[cfg(feature = "alloc")]
+impl PartialEq<Script> for alloc::string::String {
     fn eq(&self, other: &Script) -> bool {
         other == self
     }

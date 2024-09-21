@@ -14,10 +14,10 @@ pub enum InvalidLanguageTag {
     InvalidVariant,
 }
 
-impl std::error::Error for InvalidLanguageTag {}
+impl core::error::Error for InvalidLanguageTag {}
 
-impl std::fmt::Display for InvalidLanguageTag {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl core::fmt::Display for InvalidLanguageTag {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         f.write_str(match self {
             InvalidLanguageTag::InvalidLanguage => "invalid language",
             InvalidLanguageTag::InvalidScript => "invalid script",

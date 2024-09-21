@@ -2,7 +2,6 @@ use crate::{
     locale::LanguageTag,
     translation::{Message, MessageKey},
 };
-use std::borrow::Cow;
 
 impl<'a, A> MessageKey<'a, A> {
     /// Gets a version of this message in the requested language or best fallback option
@@ -34,8 +33,9 @@ impl<'a, A> MessageKey<'a, A> {
 
 /// Attempts to fallback the given language, returning if it was able to
 fn apply_fallback(language: &mut LanguageTag) -> bool {
+    #[cfg(feature = "alloc")]
     if language.variants.len() > 0 {
-        language.variants = Cow::Owned(Vec::new());
+        language.variants = alloc::borrow::Cow::Owned(alloc::vec::Vec::new());
         return true;
     }
 

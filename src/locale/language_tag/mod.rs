@@ -1,5 +1,3 @@
-use std::borrow::Cow;
-
 mod language;
 mod region;
 mod script;
@@ -28,5 +26,10 @@ pub struct LanguageTag<'a> {
     pub region: Option<Region>,
 
     /// The variants of the specific language
-    pub variants: Cow<'a, [Variant]>,
+    #[cfg(feature = "alloc")]
+    pub variants: alloc::borrow::Cow<'a, [Variant]>,
+
+    /// The variants of the specific language
+    #[cfg(not(feature = "alloc"))]
+    pub variants: &'a [Variant],
 }

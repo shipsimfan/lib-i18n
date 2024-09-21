@@ -12,7 +12,7 @@ impl AsRef<str> for Variant {
     }
 }
 
-impl std::ops::Deref for Variant {
+impl core::ops::Deref for Variant {
     type Target = [u8];
 
     fn deref(&self) -> &Self::Target {

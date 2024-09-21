@@ -12,7 +12,8 @@ impl<'a, A> MessageKey<'a, A> {
     }
 
     /// Creates a new [`MessageKey`] from `messages` where the first message is used as the final fallback
-    pub const fn new_owned(messages: Vec<(&'a LanguageTag<'a>, Message<A>)>) -> Self {
+    #[cfg(feature = "alloc")]
+    pub const fn new_owned(messages: alloc::vec::Vec<(&'a LanguageTag<'a>, Message<A>)>) -> Self {
         MessageKey {
             messages: Messages::Owned(messages),
         }

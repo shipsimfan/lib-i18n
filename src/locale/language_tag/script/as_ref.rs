@@ -12,7 +12,7 @@ impl AsRef<str> for Script {
     }
 }
 
-impl std::ops::Deref for Script {
+impl core::ops::Deref for Script {
     type Target = [u8];
 
     fn deref(&self) -> &Self::Target {

@@ -6,7 +6,7 @@ mod new;
 /// A message translated into a specific language
 pub struct Message<A> {
     /// The function which displays this message
-    pub(in crate::translation) display: fn(&A, &mut std::fmt::Formatter) -> std::fmt::Result,
+    pub(in crate::translation) display: fn(&A, &mut core::fmt::Formatter) -> core::fmt::Result,
 }
 
 impl<A> Message<A> {

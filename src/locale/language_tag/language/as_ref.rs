@@ -12,7 +12,7 @@ impl AsRef<str> for Language {
     }
 }
 
-impl std::ops::Deref for Language {
+impl core::ops::Deref for Language {
     type Target = [u8];
 
     fn deref(&self) -> &Self::Target {

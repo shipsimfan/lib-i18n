@@ -12,7 +12,7 @@ impl AsRef<str> for Region {
     }
 }
 
-impl std::ops::Deref for Region {
+impl core::ops::Deref for Region {
     type Target = [u8];
 
     fn deref(&self) -> &Self::Target {

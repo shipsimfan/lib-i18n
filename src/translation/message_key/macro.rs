@@ -7,7 +7,7 @@ macro_rules! message_key {
             $($tag: path => { $($message: tt)* },)*
         ]
     ) => {
-        #[doc = ::std::concat!("Arguments for [`", ::std::stringify!($name), "`]")]
+        #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
         struct $name {
             $arguments
         }
@@ -47,7 +47,7 @@ macro_rules! message_key {
             $($tag: path => { $($message: tt)* },)*
         ]
     ) => {
-        #[doc = ::std::concat!("Arguments for [`", ::std::stringify!($name), "`]")]
+        #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
         $vis struct $name {
             $arguments
         }
