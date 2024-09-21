@@ -4,8 +4,13 @@ use crate::{
 };
 
 impl<'a, A> MessageKey<'a, A> {
+    /// Gets the message in the default locale
+    pub fn default<'b>(&'b self) -> &'b Message<A> {
+        &self.messages[0].1
+    }
+
     /// Gets a version of this message in the requested language or best fallback option
-    pub fn get(&self, mut language: LanguageTag) -> &Message<A> {
+    pub fn get<'b, 'c>(&'b self, mut language: LanguageTag<'c>) -> &'b Message<A> {
         if let Some(message) = self.try_get(&language) {
             return message;
         }
@@ -16,11 +21,11 @@ impl<'a, A> MessageKey<'a, A> {
             }
         }
 
-        &self.messages[0].1
+        self.default()
     }
 
     /// Gets a version of this message in the requested language if it is available
-    pub fn try_get(&self, language: &LanguageTag) -> Option<&Message<A>> {
+    pub fn try_get<'b>(&'b self, language: &LanguageTag) -> Option<&'b Message<A>> {
         for (msg_language, message) in &self.messages {
             if language == *msg_language {
                 return Some(message);

@@ -1,6 +1,7 @@
 use crate::translation::Message;
 
 mod display;
+mod r#macro;
 mod new;
 
 /// A message provided with arguments which can be [`Display`](core::fmt::Display)ed
