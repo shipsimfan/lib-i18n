@@ -14,4 +14,4 @@ use linux as os;
 #[cfg(target_os = "windows")]
 use windows as os;
 
-pub use os::{get_current_language, Error};
+pub use os::{get_current_language, CurrentLanguageError};
