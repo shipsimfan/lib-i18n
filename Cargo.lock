@@ -5,3 +5,11 @@ version = 3
 [[package]]
 name = "i18n"
 version = "0.1.0"
+dependencies = [
+ "win32",
+]
+
+[[package]]
+name = "win32"
+version = "0.1.0"
+source = "git+https://github.com/shipsimfan/lib-win32#3e9f51544b799dfab898ac657725ba781f0d9241"

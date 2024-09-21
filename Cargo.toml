@@ -14,3 +14,6 @@ default = ["current"]
 alloc = []
 std = ["alloc"]
 current = ["std"]
+
+[target.'cfg(windows)'.dependencies]
+win32.git = "https://github.com/shipsimfan/lib-win32"
