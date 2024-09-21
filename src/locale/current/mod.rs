@@ -8,10 +8,8 @@ mod windows;
 
 pub use language::CURRENT_LANGUAGE;
 
-#[cfg(target_os = "linux")]
-use linux as os;
+#[cfg(all(target_os = "linux", feature = "std"))]
+pub use linux::{get_current_language, CurrentLanguageError};
 
-#[cfg(target_os = "windows")]
-use windows as os;
-
-pub use os::{get_current_language, CurrentLanguageError};
+#[cfg(all(target_os = "windows", feature = "alloc"))]
+pub use windows::{get_current_language, CurrentLanguageError};

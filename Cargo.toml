@@ -9,11 +9,11 @@ license = "GPL-3.0-or-later"
 publish = false
 
 [features]
-default = ["current"]
+default = ["std", "current"]
 
 alloc = []
 std = ["alloc"]
-current = ["std", "dep:win32"]
+current = ["dep:win32"]
 
 [target.'cfg(windows)'.dependencies]
 win32 = { git = "https://github.com/shipsimfan/lib-win32", optional = true }

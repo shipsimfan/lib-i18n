@@ -14,6 +14,6 @@ pub fn get_current_language() -> Result<LanguageTag<'static>, CurrentLanguageErr
     ))
     .map_err(CurrentLanguageError::OS)?;
 
-    let tag = String::from_utf16_lossy(&buffer[..len as usize - 1]);
+    let tag = alloc::string::String::from_utf16_lossy(&buffer[..len as usize - 1]);
     LanguageTag::new(tag.as_bytes()).map_err(Into::into)
 }
