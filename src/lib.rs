@@ -12,3 +12,6 @@ extern crate alloc;
 
 pub mod locale;
 pub mod translation;
+
+#[cfg(feature = "fluent")]
+pub mod fluent;
