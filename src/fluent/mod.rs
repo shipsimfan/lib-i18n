@@ -4,6 +4,7 @@ mod parse;
 mod position;
 mod stream;
 
+mod blank;
 mod entry;
 mod resource;
 
@@ -15,6 +16,8 @@ pub use position::FluentPosition;
 
 #[cfg(feature = "std")]
 pub use parse::parse_file;
+
+use blank::{BlankBlock, BlankInline};
 
 pub use entry::*;
 pub use resource::FluentResource;

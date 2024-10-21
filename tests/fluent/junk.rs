@@ -19,7 +19,6 @@ pub fn create_target() -> FluentResource {
     ));
     target.push(FluentJunk::new((14, 1), "err04 = {\n"));
     target.push(FluentComment::new((15, 1), 1, "COMMENT"));
-    target.push(FluentJunk::new((16, 1), "\n"));
     target.push(FluentComment::new(
         (17, 1),
         1,

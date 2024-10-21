@@ -7,7 +7,6 @@ pub fn create_target() -> FluentResource {
         3,
         "NOTE: Disable final newline insertion when editing this file.",
     ));
-    target.push(FluentJunk::new((2, 1), "\n"));
     target.push(FluentComment::new((3, 1), 1, "No EOL"));
     target
 }

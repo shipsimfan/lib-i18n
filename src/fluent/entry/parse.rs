@@ -1,4 +1,4 @@
-use crate::fluent::{FluentEntry, Parse, Stream};
+use crate::fluent::{BlankBlock, FluentEntry, Parse, Stream};
 
 impl Parse for FluentEntry {
     fn parse(stream: &mut Stream) -> Option<Self> {
@@ -6,6 +6,11 @@ impl Parse for FluentEntry {
             Some('#') => {
                 if let Some(comment) = stream.step_parse() {
                     return Some(FluentEntry::Comment(comment));
+                }
+            }
+            Some(' ') | Some('\n') | None => {
+                if stream.step_parse::<BlankBlock>().is_some() {
+                    return None;
                 }
             }
             _ => {}
