@@ -1,13 +1,16 @@
 use crate::fluent::{FluentResource, Parse, Stream};
+use alloc::vec::Vec;
 
 impl Parse for FluentResource {
     fn parse(stream: &mut Stream) -> Option<Self> {
-        let mut junk = Vec::new();
+        let mut entries = Vec::new();
 
         while !stream.empty() {
-            junk.push(stream.parse().unwrap());
+            if let Some(entry) = stream.parse() {
+                entries.push(entry);
+            }
         }
 
-        Some(FluentResource { junk })
+        Some(FluentResource { entries })
     }
 }

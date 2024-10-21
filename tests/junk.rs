@@ -1,32 +1,45 @@
-const TARGET: &[((u32, u32), &str)] = &[
-    ((1, 1), "## Two adjacent Junks.\n"),
-    ((2, 1), "err01 = {1x}\n"),
-    ((3, 1), "err02 = {2x}\n\n"),
-    ((5, 1), "# A single Junk.\n"),
-    ((6, 1), "err03 = {1x\n2\n\n"),
-    (
-        (9, 1),
-        "# A single Junk.\ną=Invalid identifier\nć=Another one\n\n",
-    ),
-    ((13, 1), "# The COMMENT ends this junk.\n"),
-    ((14, 1), "err04 = {\n"),
-    ((15, 1), "# COMMENT\n\n"),
-    ((17, 1), "# The COMMENT ends this junk.\n"),
-    ((18, 1), "# The closing brace is a separate Junk.\n"),
-    ((19, 1), "err04 = {\n"),
-    ((20, 1), "# COMMENT\n}"),
-];
+use i18n::fluent::{FluentJunk, FluentResource};
 
-const PATH: &str = "tests/junk.ftl";
+const SOURCE: &str = include_str!("junk.ftl");
 
 #[test]
-fn junk() {
-    let resource = i18n::fluent::parse_file(PATH).unwrap();
+fn fluent_junk() {
+    let target = create_target();
 
-    assert_eq!(resource.junk().len(), TARGET.len());
-    for (junk, ((line, column), content)) in resource.junk().iter().zip(TARGET) {
-        assert_eq!(junk.position().line(), *line);
-        assert_eq!(junk.position().column(), *column);
-        assert_eq!(junk.content(), *content);
-    }
+    let resource = i18n::fluent::parse(SOURCE);
+
+    assert_eq!(target, resource);
+}
+
+fn create_target() -> FluentResource {
+    let mut target = FluentResource::new();
+    target.push(FluentJunk::new(
+        (1, 1),
+        "## Two adjacent Junks.\n".to_string(),
+    ));
+    target.push(FluentJunk::new((2, 1), "err01 = {1x}\n".to_string()));
+    target.push(FluentJunk::new((3, 1), "err02 = {2x}\n\n".to_string()));
+    target.push(FluentJunk::new((5, 1), "# A single Junk.\n".to_string()));
+    target.push(FluentJunk::new((6, 1), "err03 = {1x\n2\n\n".to_string()));
+    target.push(FluentJunk::new(
+        (9, 1),
+        "# A single Junk.\ną=Invalid identifier\nć=Another one\n\n".to_string(),
+    ));
+    target.push(FluentJunk::new(
+        (13, 1),
+        "# The COMMENT ends this junk.\n".to_string(),
+    ));
+    target.push(FluentJunk::new((14, 1), "err04 = {\n".to_string()));
+    target.push(FluentJunk::new((15, 1), "# COMMENT\n\n".to_string()));
+    target.push(FluentJunk::new(
+        (17, 1),
+        "# The COMMENT ends this junk.\n".to_string(),
+    ));
+    target.push(FluentJunk::new(
+        (18, 1),
+        "# The closing brace is a separate Junk.\n".to_string(),
+    ));
+    target.push(FluentJunk::new((19, 1), "err04 = {\n".to_string()));
+    target.push(FluentJunk::new((20, 1), "# COMMENT\n}".to_string()));
+    target
 }

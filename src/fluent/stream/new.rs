@@ -7,7 +7,7 @@ impl<'a> Stream<'a> {
             source,
             characters: source.chars(),
             index: 0,
-            position: FluentPosition::new(),
+            position: FluentPosition::default(),
         }
     }
 }

@@ -1,5 +1,4 @@
 use crate::fluent::{FluentResource, Stream};
-use std::path::Path;
 
 /// An item which can be parsed from a fluent file
 pub(in crate::fluent) trait Parse: 'static + Sized {
@@ -14,7 +13,8 @@ pub fn parse<S: AsRef<str>>(source: S) -> FluentResource {
 }
 
 /// Parses the file at `path` into a [`FluentResource`]
-pub fn parse_file<P: AsRef<Path>>(path: P) -> Result<FluentResource, std::io::Error> {
+#[cfg(feature = "std")]
+pub fn parse_file<P: AsRef<std::path::Path>>(path: P) -> Result<FluentResource, std::io::Error> {
     let source = std::fs::read_to_string(path)?;
     Ok(parse(source))
 }

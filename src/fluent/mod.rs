@@ -4,14 +4,17 @@ mod parse;
 mod position;
 mod stream;
 
-mod junk;
+mod entry;
 mod resource;
 
 use parse::Parse;
 use stream::{Stream, StreamCollector};
 
-pub use parse::{parse, parse_file};
+pub use parse::parse;
 pub use position::FluentPosition;
 
-pub use junk::FluentJunk;
+#[cfg(feature = "std")]
+pub use parse::parse_file;
+
+pub use entry::*;
 pub use resource::FluentResource;

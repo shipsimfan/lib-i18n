@@ -1,8 +1,8 @@
-use crate::fluent::{FluentJunk, FluentResource};
+use crate::fluent::{FluentEntry, FluentResource};
 
 impl FluentResource {
-    /// Gets the junk lines in the file
-    pub fn junk(&self) -> &[FluentJunk] {
-        &self.junk
+    /// Gets the entries of the file
+    pub fn entries(&self) -> &[FluentEntry] {
+        &self.entries
     }
 }

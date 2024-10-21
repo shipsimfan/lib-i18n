@@ -1,4 +1,5 @@
 use crate::fluent::{FluentJunk, Parse, Stream, StreamCollector};
+use alloc::string::ToString;
 
 fn parse_line(collector: &mut StreamCollector) {
     while let Some(c) = collector.next() {
