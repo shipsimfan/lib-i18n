@@ -5,9 +5,4 @@ impl<'a, 'b> StreamCollector<'a, 'b> {
     pub(in crate::fluent) fn peek(&self) -> Option<char> {
         self.stream.peek()
     }
-
-    /// Returns the character `n` characters ahead in stream without advacing it
-    pub(in crate::fluent) fn peek_n(&self, n: usize) -> Option<char> {
-        self.stream.peek_n(n)
-    }
 }

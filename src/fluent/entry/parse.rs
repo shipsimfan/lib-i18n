@@ -4,6 +4,7 @@ impl Parse for FluentEntry {
     fn parse(stream: &mut Stream) -> Option<Self> {
         match stream.peek() {
             Some('#') => {
+                println!("Comment: {}", stream.position().line());
                 if let Some(comment) = stream.step_parse() {
                     return Some(FluentEntry::Comment(comment));
                 }

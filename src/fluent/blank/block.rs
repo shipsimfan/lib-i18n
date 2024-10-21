@@ -1,4 +1,4 @@
-use crate::fluent::{BlankInline, Parse, Stream};
+use crate::fluent::{BlankInline, LineEnd, Parse, Stream};
 
 pub(in crate::fluent) struct BlankBlock;
 
@@ -9,13 +9,11 @@ impl Parse for BlankBlock {
         while !stream.empty() {
             stream.step_parse::<BlankInline>();
 
-            match stream.peek() {
-                Some('\n') | None => {}
-                _ => break,
+            if stream.parse::<LineEnd>().is_none() {
+                break;
             }
 
             lines += 1;
-            stream.next();
         }
 
         if lines == 0 {

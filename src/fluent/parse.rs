@@ -18,3 +18,9 @@ pub fn parse_file<P: AsRef<std::path::Path>>(path: P) -> Result<FluentResource, 
     let source = std::fs::read_to_string(path)?;
     Ok(parse(source))
 }
+
+impl Parse for char {
+    fn parse(stream: &mut Stream) -> Option<Self> {
+        stream.next()
+    }
+}

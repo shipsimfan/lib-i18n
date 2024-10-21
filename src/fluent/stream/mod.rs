@@ -5,11 +5,13 @@ mod collector;
 
 mod begin_collecting;
 mod empty;
+mod expect;
 mod new;
 mod next;
 mod parse;
 mod peek;
 mod position;
+mod skip;
 mod step;
 
 pub use collector::StreamCollector;

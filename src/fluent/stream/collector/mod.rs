@@ -1,10 +1,8 @@
 use crate::fluent::Stream;
 
-mod empty;
 mod end;
 mod new;
 mod next;
-mod parse;
 mod peek;
 
 /// Collects a string from the stream until this is dropped

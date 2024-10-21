@@ -6,6 +6,7 @@ mod stream;
 
 mod blank;
 mod entry;
+mod line_end;
 mod resource;
 
 use parse::Parse;
@@ -18,6 +19,7 @@ pub use position::FluentPosition;
 pub use parse::parse_file;
 
 use blank::{BlankBlock, BlankInline};
+use line_end::LineEnd;
 
 pub use entry::*;
 pub use resource::FluentResource;
