@@ -19,4 +19,12 @@ macro_rules! tests {
     };
 }
 
-tests![comments, junk,];
+tests![
+    comments,
+    eof_comment,
+    eof_empty,
+    eof_id_equals,
+    eof_id,
+    eof_junk,
+    junk,
+];
