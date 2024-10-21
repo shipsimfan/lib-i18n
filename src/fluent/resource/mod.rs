@@ -1,6 +1,7 @@
 use crate::fluent::FluentEntry;
 use alloc::vec::Vec;
 
+mod display;
 mod get;
 mod new;
 mod parse;

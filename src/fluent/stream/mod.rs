@@ -10,6 +10,7 @@ mod next;
 mod parse;
 mod peek;
 mod position;
+mod step;
 
 pub use collector::StreamCollector;
 

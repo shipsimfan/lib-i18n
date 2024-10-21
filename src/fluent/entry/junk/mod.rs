@@ -1,6 +1,7 @@
 use crate::fluent::FluentPosition;
 use alloc::string::String;
 
+mod display;
 mod get;
 mod new;
 mod parse;
