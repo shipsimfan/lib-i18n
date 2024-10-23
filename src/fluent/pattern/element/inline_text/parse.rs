@@ -1,7 +1,7 @@
 use crate::fluent::{FluentInlineText, Parse, Stream};
 
 fn is_valid_char(c: char) -> bool {
-    c == '{' || c == '}' || c == '\n'
+    c != '{' && c != '}' && c != '\n'
 }
 
 impl Parse for FluentInlineText {

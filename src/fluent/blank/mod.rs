@@ -12,8 +12,9 @@ impl Parse for Blank {
     fn parse(stream: &mut Stream) -> Option<Self> {
         let mut count = 0;
         loop {
-            if stream.step_parse::<LineEnd>().is_none()
-                && stream.step_parse::<BlankInline>().is_none()
+            if stream.empty()
+                || (stream.step_parse::<LineEnd>().is_none()
+                    && stream.step_parse::<BlankInline>().is_none())
             {
                 break;
             }
