@@ -4,9 +4,12 @@ mod parse;
 mod position;
 mod stream;
 
+mod attribute;
 mod blank;
 mod entry;
+mod identifier;
 mod line_end;
+mod pattern;
 mod resource;
 
 use parse::Parse;
@@ -18,8 +21,11 @@ pub use position::FluentPosition;
 #[cfg(feature = "std")]
 pub use parse::parse_file;
 
-use blank::{BlankBlock, BlankInline};
+use blank::{Blank, BlankBlock, BlankInline};
 use line_end::LineEnd;
 
+pub use attribute::FluentAttribute;
 pub use entry::*;
+pub use identifier::FluentIdentifier;
+pub use pattern::{FluentInlineText, FluentPattern, FluentPatternElement};
 pub use resource::FluentResource;

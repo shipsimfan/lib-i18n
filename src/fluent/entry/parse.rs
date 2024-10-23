@@ -1,4 +1,4 @@
-use crate::fluent::{BlankBlock, FluentEntry, Parse, Stream};
+use crate::fluent::{BlankBlock, FluentEntry, FluentMessage, Parse, Stream};
 
 impl Parse for FluentEntry {
     fn parse(stream: &mut Stream) -> Option<Self> {
@@ -12,6 +12,11 @@ impl Parse for FluentEntry {
             Some(' ') | Some('\n') | None => {
                 if stream.step_parse::<BlankBlock>().is_some() {
                     return None;
+                }
+            }
+            Some(x) if x.is_ascii_alphabetic() => {
+                if let Some(message) = stream.step_parse::<FluentMessage>() {
+                    return Some(FluentEntry::Message(message));
                 }
             }
             _ => {}

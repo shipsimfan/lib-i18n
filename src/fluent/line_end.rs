@@ -1,5 +1,6 @@
 use crate::fluent::{Parse, Stream};
 
+#[derive(PartialEq, Eq)]
 pub(in crate::fluent) struct LineEnd;
 
 impl Parse for LineEnd {
