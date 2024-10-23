@@ -20,11 +20,15 @@ macro_rules! tests {
 }
 
 tests![
+    any_char,
     comments,
+    cr_multikey,
+    cr_multilinevalue,
     eof_comment,
     eof_empty,
     eof_id_equals,
     eof_id,
     eof_junk,
+    eof_value,
     junk,
 ];

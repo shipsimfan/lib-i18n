@@ -1,4 +1,4 @@
-use i18n::fluent::{FluentComment, FluentJunk, FluentResource};
+use i18n::fluent::{FluentComment, FluentResource};
 
 pub fn create_target() -> FluentResource {
     let mut target = FluentResource::new();
