@@ -31,4 +31,5 @@ tests![
     eof_junk,
     eof_value,
     junk,
+    special_chars,
 ];
