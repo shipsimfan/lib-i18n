@@ -6,6 +6,8 @@ impl Parse for FluentAttribute {
 
         stream.step_parse::<Blank>();
 
+        let position = stream.position();
+
         stream.expect('.')?;
         let name = stream.parse()?;
 
@@ -15,6 +17,10 @@ impl Parse for FluentAttribute {
 
         let pattern = stream.parse()?;
 
-        Some(FluentAttribute { name, pattern })
+        Some(FluentAttribute {
+            position,
+            name,
+            pattern,
+        })
     }
 }

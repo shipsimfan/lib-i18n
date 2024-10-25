@@ -3,7 +3,7 @@ use crate::fluent::{FluentAttribute, FluentIdentifier, FluentPattern, FluentPosi
 impl FluentAttribute {
     /// Gets the position of the start of this attribute
     pub const fn position(&self) -> FluentPosition {
-        self.name.position()
+        self.position
     }
 
     /// Gets the name of this attribute, not including leading '.'

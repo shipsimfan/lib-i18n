@@ -7,9 +7,18 @@ impl FluentAttribute {
         name: S,
         pattern: Pa,
     ) -> Self {
+        let position = position.into();
+        let pattern = pattern.into();
+
+        let mut name_position = position;
+        name_position.inc('-');
+
+        assert!(name_position < pattern.position());
+
         FluentAttribute {
-            name: FluentIdentifier::new(position, name),
-            pattern: pattern.into(),
+            position,
+            name: FluentIdentifier::new(name_position, name),
+            pattern,
         }
     }
 }

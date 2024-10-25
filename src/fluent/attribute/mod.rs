@@ -1,4 +1,4 @@
-use crate::fluent::{FluentIdentifier, FluentPattern};
+use crate::fluent::{FluentIdentifier, FluentPattern, FluentPosition};
 
 mod display;
 mod get;
@@ -8,6 +8,9 @@ mod parse;
 /// A child message to a full entry message or term
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FluentAttribute {
+    /// The position of the start of this attribute
+    position: FluentPosition,
+
     /// The name of the attribute, without leading '.'
     name: FluentIdentifier,
 

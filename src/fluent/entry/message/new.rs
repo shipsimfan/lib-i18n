@@ -4,7 +4,7 @@ use crate::fluent::{
 
 impl FluentMessage {
     /// Creates a new [`FluentMessage`] without a pattern
-    pub fn new<P: Into<FluentPosition>, Pa: Into<FluentPattern>, S: Into<String>>(
+    pub fn new<P: Into<FluentPosition>, S: Into<String>>(
         position: P,
         name: S,
         attributes: Vec<FluentAttribute>,
