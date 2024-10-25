@@ -2,6 +2,7 @@ mod element;
 
 mod deref;
 mod display;
+mod from;
 mod get;
 mod iter;
 mod new;

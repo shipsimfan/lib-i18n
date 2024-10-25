@@ -1,38 +1,24 @@
-use i18n::fluent::{
-    FluentComment, FluentInlineText, FluentJunk, FluentMessage, FluentPattern, FluentResource,
-};
+use i18n::fluent::{FluentComment, FluentInlineText, FluentJunk, FluentMessage, FluentResource};
 
 pub fn create_target() -> FluentResource {
     let mut target = FluentResource::new();
     target.push(FluentComment::new((1, 1), 2, "OK"));
-    target.push(FluentMessage::new(
+    target.push(FluentMessage::new_with(
         (3, 1),
         "bracket-inline",
-        Some(FluentPattern::new(vec![FluentInlineText::new(
-            (3, 18),
-            "[Value]",
-        )
-        .into()])),
+        FluentInlineText::new((3, 18), "[Value]"),
         Vec::new(),
     ));
-    target.push(FluentMessage::new(
+    target.push(FluentMessage::new_with(
         (4, 1),
         "dot-inline",
-        Some(FluentPattern::new(vec![FluentInlineText::new(
-            (4, 14),
-            ".Value",
-        )
-        .into()])),
+        FluentInlineText::new((4, 14), ".Value"),
         Vec::new(),
     ));
-    target.push(FluentMessage::new(
+    target.push(FluentMessage::new_with(
         (5, 1),
         "star-inline",
-        Some(FluentPattern::new(vec![FluentInlineText::new(
-            (5, 15),
-            "*Value",
-        )
-        .into()])),
+        FluentInlineText::new((5, 15), "*Value"),
         Vec::new(),
     ));
 

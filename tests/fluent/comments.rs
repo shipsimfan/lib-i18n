@@ -1,20 +1,15 @@
 use i18n::fluent::{
-    FluentComment, FluentInlineText, FluentJunk, FluentMessage, FluentPattern, FluentResource,
-    FluentTerm,
+    FluentComment, FluentInlineText, FluentJunk, FluentMessage, FluentResource, FluentTerm,
 };
 
 pub fn create_target() -> FluentResource {
     let mut target = FluentResource::new();
     target.push(FluentComment::new((1, 1), 1, "Standalone Comment"));
     target.push(FluentComment::new((3, 1), 1, "Message Comment"));
-    target.push(FluentMessage::new(
+    target.push(FluentMessage::new_with(
         (4, 1),
         "foo",
-        Some(FluentPattern::new(vec![FluentInlineText::new(
-            (4, 7),
-            "Foo",
-        )
-        .into()])),
+        FluentInlineText::new((4, 7), "Foo"),
         Vec::new(),
     ));
     target.push(FluentComment::new((6, 1), 1, "Term Comment"));
@@ -23,7 +18,7 @@ pub fn create_target() -> FluentResource {
     target.push(FluentTerm::new(
         (9, 1),
         "term",
-        FluentPattern::new(vec![FluentInlineText::new((9, 9), "Term").into()]),
+        FluentInlineText::new((9, 9), "Term"),
         Vec::new(),
     ));
     target.push(FluentComment::new((11, 1), 1, "Another standalone"));

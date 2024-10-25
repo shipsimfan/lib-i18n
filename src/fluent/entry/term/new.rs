@@ -2,13 +2,15 @@ use crate::fluent::{FluentAttribute, FluentIdentifier, FluentPattern, FluentPosi
 
 impl FluentTerm {
     /// Creates a new [`FluentTerm`]
-    pub fn new<P: Into<FluentPosition>, S: Into<String>>(
+    pub fn new<P: Into<FluentPosition>, Pa: Into<FluentPattern>, S: Into<String>>(
         position: P,
         name: S,
-        pattern: FluentPattern,
+        pattern: Pa,
         attributes: Vec<FluentAttribute>,
     ) -> Self {
         let position = position.into();
+        let pattern = pattern.into();
+
         let mut name_position = position;
         name_position.inc('-');
 

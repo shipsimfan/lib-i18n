@@ -3,16 +3,38 @@ use crate::fluent::{
 };
 
 impl FluentMessage {
-    /// Creates a new [`FluentMessage`]
-    pub fn new<P: Into<FluentPosition>, S: Into<String>>(
+    /// Creates a new [`FluentMessage`] without a pattern
+    pub fn new<P: Into<FluentPosition>, Pa: Into<FluentPattern>, S: Into<String>>(
         position: P,
         name: S,
+        attributes: Vec<FluentAttribute>,
+    ) -> Self {
+        FluentMessage::new_inner(position.into(), name.into(), None, attributes)
+    }
+
+    /// Creates a new [`FluentMessage`] with a pattern
+    pub fn new_with<P: Into<FluentPosition>, Pa: Into<FluentPattern>, S: Into<String>>(
+        position: P,
+        name: S,
+        pattern: Pa,
+        attributes: Vec<FluentAttribute>,
+    ) -> Self {
+        FluentMessage::new_inner(
+            position.into(),
+            name.into(),
+            Some(pattern.into()),
+            attributes,
+        )
+    }
+
+    /// Creates a new [`FluentMessage`] directly
+    fn new_inner(
+        position: FluentPosition,
+        name: String,
         pattern: Option<FluentPattern>,
         attributes: Vec<FluentAttribute>,
     ) -> Self {
         assert!(pattern.is_some() || attributes.len() > 0);
-
-        let position = position.into();
 
         if let Some(pattern) = pattern.as_ref() {
             assert!(position < pattern.position());
