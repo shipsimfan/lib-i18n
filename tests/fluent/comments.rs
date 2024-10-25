@@ -1,5 +1,6 @@
 use i18n::fluent::{
     FluentComment, FluentInlineText, FluentJunk, FluentMessage, FluentPattern, FluentResource,
+    FluentTerm,
 };
 
 pub fn create_target() -> FluentResource {
@@ -19,7 +20,12 @@ pub fn create_target() -> FluentResource {
     target.push(FluentComment::new((6, 1), 1, "Term Comment"));
     target.push(FluentComment::new((7, 1), 1, "with a blank last line."));
     target.push(FluentComment::new((8, 1), 1, ""));
-    target.push(FluentJunk::new((9, 1), "-term = Term\n\n"));
+    target.push(FluentTerm::new(
+        (9, 1),
+        "term",
+        FluentPattern::new(vec![FluentInlineText::new((9, 9), "Term").into()]),
+        Vec::new(),
+    ));
     target.push(FluentComment::new((11, 1), 1, "Another standalone"));
     target.push(FluentComment::new((12, 1), 1, ""));
     target.push(FluentComment::new((13, 1), 1, "     with indent"));

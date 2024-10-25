@@ -8,6 +8,11 @@ impl Parse for FluentEntry {
                     return Some(FluentEntry::Comment(comment));
                 }
             }
+            Some('-') => {
+                if let Some(term) = stream.step_parse() {
+                    return Some(FluentEntry::Term(term));
+                }
+            }
             Some(' ') | Some('\n') | None => {
                 if stream.step_parse::<BlankBlock>().is_some() {
                     return None;

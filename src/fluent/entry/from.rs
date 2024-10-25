@@ -1,8 +1,14 @@
-use crate::fluent::{FluentComment, FluentEntry, FluentJunk, FluentMessage};
+use crate::fluent::{FluentComment, FluentEntry, FluentJunk, FluentMessage, FluentTerm};
 
 impl From<FluentMessage> for FluentEntry {
     fn from(message: FluentMessage) -> Self {
         FluentEntry::Message(message)
+    }
+}
+
+impl From<FluentTerm> for FluentEntry {
+    fn from(term: FluentTerm) -> Self {
+        FluentEntry::Term(term)
     }
 }
 
