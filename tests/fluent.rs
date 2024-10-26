@@ -32,5 +32,6 @@ tests![
     eof_value,
     junk,
     mixed_entries,
+    sparse_entries,
     special_chars,
 ];

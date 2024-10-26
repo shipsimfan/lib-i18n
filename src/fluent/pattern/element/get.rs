@@ -5,6 +5,7 @@ impl FluentPatternElement {
     pub const fn position(&self) -> FluentPosition {
         match self {
             FluentPatternElement::InlineText(inline_text) => inline_text.position(),
+            FluentPatternElement::BlockText(block_text) => block_text.position(),
         }
     }
 }

@@ -27,5 +27,5 @@ use line_end::LineEnd;
 pub use attribute::FluentAttribute;
 pub use entry::*;
 pub use identifier::FluentIdentifier;
-pub use pattern::{FluentInlineText, FluentPattern, FluentPatternElement};
+pub use pattern::{FluentBlockText, FluentInlineText, FluentPattern, FluentPatternElement};
 pub use resource::FluentResource;

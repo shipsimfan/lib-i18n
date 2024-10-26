@@ -1,7 +1,7 @@
-use crate::fluent::FluentInlineText;
+use crate::fluent::FluentBlockText;
 use core::ops::Deref;
 
-impl Deref for FluentInlineText {
+impl Deref for FluentBlockText {
     type Target = str;
 
     fn deref(&self) -> &Self::Target {
@@ -9,7 +9,7 @@ impl Deref for FluentInlineText {
     }
 }
 
-impl AsRef<str> for FluentInlineText {
+impl AsRef<str> for FluentBlockText {
     fn as_ref(&self) -> &str {
         self.content()
     }
