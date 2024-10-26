@@ -7,9 +7,18 @@ impl Parse for BlankBlock {
         let mut lines = 0;
 
         while !stream.empty() {
-            stream.step_parse::<BlankInline>();
+            if stream
+                .step(|stream| {
+                    stream.step_parse::<BlankInline>();
 
-            if stream.parse::<LineEnd>().is_none() {
+                    if stream.parse::<LineEnd>().is_none() {
+                        return None;
+                    }
+
+                    Some(())
+                })
+                .is_none()
+            {
                 break;
             }
 
