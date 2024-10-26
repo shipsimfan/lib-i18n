@@ -7,7 +7,7 @@ mod new;
 mod parse;
 
 /// A text element that starts on a different line
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FluentBlockText {
     /// The position of the start of the text
     position: FluentPosition,

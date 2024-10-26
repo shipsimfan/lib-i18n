@@ -6,7 +6,7 @@ mod new;
 mod parse;
 
 /// A single fluent term
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FluentTerm {
     /// The position of the start of this term
     position: FluentPosition,

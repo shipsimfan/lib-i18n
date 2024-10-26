@@ -8,7 +8,7 @@ mod parse;
 mod push;
 
 /// A parsed fluent file
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FluentResource {
     /// The entries of a fluent file
     entries: Vec<FluentEntry>,

@@ -6,6 +6,10 @@ impl Parse for FluentPatternElement {
             return Some(FluentPatternElement::InlineText(inline_text));
         }
 
+        if let Some(inline_placeable) = stream.step_parse() {
+            return Some(FluentPatternElement::InlinePlaceable(inline_placeable));
+        }
+
         if let Some(block_text) = stream.step_parse() {
             return Some(FluentPatternElement::BlockText(block_text));
         }

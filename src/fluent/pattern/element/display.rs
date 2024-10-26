@@ -5,6 +5,7 @@ impl core::fmt::Display for FluentPatternElement {
         match self {
             FluentPatternElement::InlineText(inline_text) => inline_text.fmt(f),
             FluentPatternElement::BlockText(block_text) => block_text.fmt(f),
+            FluentPatternElement::InlinePlaceable(inline_placeable) => inline_placeable.fmt(f),
         }
     }
 }

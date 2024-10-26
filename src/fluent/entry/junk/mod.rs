@@ -7,7 +7,7 @@ mod new;
 mod parse;
 
 /// Parts of a fluent file that were not able to be parsed
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FluentJunk {
     /// The position of the start of this junk
     position: FluentPosition,

@@ -7,6 +7,7 @@ mod stream;
 mod attribute;
 mod blank;
 mod entry;
+mod expression;
 mod identifier;
 mod line_end;
 mod pattern;
@@ -26,6 +27,9 @@ use line_end::LineEnd;
 
 pub use attribute::FluentAttribute;
 pub use entry::*;
+pub use expression::FluentExpression;
 pub use identifier::FluentIdentifier;
-pub use pattern::{FluentBlockText, FluentInlineText, FluentPattern, FluentPatternElement};
+pub use pattern::{
+    FluentBlockText, FluentInlinePlaceable, FluentInlineText, FluentPattern, FluentPatternElement,
+};
 pub use resource::FluentResource;

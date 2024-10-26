@@ -14,7 +14,7 @@ pub use message::FluentMessage;
 pub use term::FluentTerm;
 
 /// An entry in a fluent file
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum FluentEntry {
     /// A message which describes a usuable translation
     Message(FluentMessage),

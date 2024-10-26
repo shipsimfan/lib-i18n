@@ -7,7 +7,7 @@ mod new;
 mod parse;
 
 /// A comment in a fluent file
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FluentComment {
     /// The position of the start of this comment
     position: FluentPosition,

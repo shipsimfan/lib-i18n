@@ -6,7 +6,7 @@ mod new;
 mod parse;
 
 /// A single fluent message
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FluentMessage {
     /// The name of the message
     name: FluentIdentifier,
