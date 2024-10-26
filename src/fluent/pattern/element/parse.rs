@@ -14,6 +14,10 @@ impl Parse for FluentPatternElement {
             return Some(FluentPatternElement::BlockText(block_text));
         }
 
+        if let Some(block_placeable) = stream.step_parse() {
+            return Some(FluentPatternElement::BlockPlaceable(block_placeable));
+        }
+
         None
     }
 }

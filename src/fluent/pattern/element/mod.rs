@@ -1,3 +1,4 @@
+mod block_placeable;
 mod block_text;
 mod inline_placeable;
 mod inline_text;
@@ -8,6 +9,7 @@ mod get;
 mod new;
 mod parse;
 
+pub use block_placeable::FluentBlockPlaceable;
 pub use block_text::FluentBlockText;
 pub use inline_placeable::FluentInlinePlaceable;
 pub use inline_text::FluentInlineText;
@@ -23,4 +25,7 @@ pub enum FluentPatternElement {
 
     /// The element is a placeable that should be replaced based on some data
     InlinePlaceable(FluentInlinePlaceable),
+
+    /// The element is an inline placeable that starts on another line
+    BlockPlaceable(FluentBlockPlaceable),
 }

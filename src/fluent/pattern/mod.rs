@@ -9,7 +9,10 @@ mod new;
 mod parse;
 mod push;
 
-pub use element::{FluentBlockText, FluentInlinePlaceable, FluentInlineText, FluentPatternElement};
+pub use element::{
+    FluentBlockPlaceable, FluentBlockText, FluentInlinePlaceable, FluentInlineText,
+    FluentPatternElement,
+};
 
 /// A pattern describing a message, attribute, or term
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]

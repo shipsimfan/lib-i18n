@@ -30,6 +30,7 @@ pub use entry::*;
 pub use expression::FluentExpression;
 pub use identifier::FluentIdentifier;
 pub use pattern::{
-    FluentBlockText, FluentInlinePlaceable, FluentInlineText, FluentPattern, FluentPatternElement,
+    FluentBlockPlaceable, FluentBlockText, FluentInlinePlaceable, FluentInlineText, FluentPattern,
+    FluentPatternElement,
 };
 pub use resource::FluentResource;
