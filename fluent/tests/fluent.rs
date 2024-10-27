@@ -12,7 +12,7 @@ macro_rules! tests {
                 const SOURCE: &str = include_str!(concat!("fluent/", stringify!($name), ".ftl"));
 
                 let target = fluent::$name::create_target();
-                let resource = i18n::fluent::parse(SOURCE);
+                let resource = ::fluent::parse(SOURCE);
                 assert_eq!(target, resource);
             }
         )*

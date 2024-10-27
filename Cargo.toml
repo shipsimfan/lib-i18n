@@ -21,7 +21,7 @@ license.workspace = true
 publish.workspace = true
 
 [features]
-default = ["std", "current", "fluent"]
+default = ["std", "current"]
 
 alloc = []
 std = ["alloc", "fluent?/std"]

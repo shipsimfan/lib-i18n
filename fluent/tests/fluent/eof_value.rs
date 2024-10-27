@@ -1,4 +1,4 @@
-use i18n::fluent::{FluentComment, FluentJunk, FluentResource};
+use fluent::{FluentComment, FluentInlineText, FluentMessage, FluentResource};
 
 pub fn create_target() -> FluentResource {
     let mut target = FluentResource::new();
@@ -7,6 +7,11 @@ pub fn create_target() -> FluentResource {
         3,
         "NOTE: Disable final newline insertion when editing this file.",
     ));
-    target.push(FluentJunk::new((3, 1), "000"));
+    target.push(FluentMessage::new_with(
+        (3, 1),
+        "no-eol",
+        FluentInlineText::new((3, 10), "No EOL"),
+        Vec::new(),
+    ));
     target
 }
