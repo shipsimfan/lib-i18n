@@ -14,4 +14,4 @@ pub mod locale;
 pub mod translation;
 
 #[cfg(feature = "fluent")]
-pub mod fluent;
+pub use fluent;
