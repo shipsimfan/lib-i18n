@@ -24,3 +24,9 @@ impl Parse for char {
         stream.next()
     }
 }
+
+impl<T: Parse> Parse for Box<T> {
+    fn parse(stream: &mut Stream) -> Option<Self> {
+        stream.parse().map(|element| Box::new(element))
+    }
+}
