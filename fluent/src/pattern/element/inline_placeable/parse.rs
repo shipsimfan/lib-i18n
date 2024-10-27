@@ -5,11 +5,11 @@ impl Parse for FluentInlinePlaceable {
         let position = stream.position();
 
         stream.expect('{')?;
-        stream.step_parse::<Blank>()?;
+        stream.step_parse::<Blank>();
 
         let expression = stream.parse()?;
 
-        stream.step_parse::<Blank>()?;
+        stream.step_parse::<Blank>();
         stream.expect('}')?;
 
         Some(FluentInlinePlaceable {

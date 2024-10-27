@@ -6,7 +6,7 @@ mod get;
 mod new;
 mod parse;
 
-pub use inline::FluentInlineExpression;
+pub use inline::{FluentInlineExpression, FluentVariableReference};
 
 /// An expression which describes an element to be inserted into a pattern
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]

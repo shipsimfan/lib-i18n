@@ -7,6 +7,9 @@ impl FluentInlineExpression {
             FluentInlineExpression::InlinePlaceable(inline_placeable) => {
                 inline_placeable.position()
             }
+            FluentInlineExpression::VariableReference(variable_reference) => {
+                variable_reference.position()
+            }
         }
     }
 }

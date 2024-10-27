@@ -34,4 +34,5 @@ tests![
     mixed_entries,
     sparse_entries,
     special_chars,
+    variables,
 ];
