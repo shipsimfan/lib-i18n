@@ -15,3 +15,6 @@ pub mod translation;
 
 #[cfg(feature = "fluent")]
 pub use fluent;
+
+#[cfg(feature = "fluent-macro")]
+pub use fluent_macro::include_fluent;

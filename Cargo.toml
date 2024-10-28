@@ -8,6 +8,7 @@ publish = false
 
 [workspace.dependencies]
 fluent.path = "fluent"
+fluent-macro.path = "fluent-macro"
 
 [package]
 name = "i18n"
@@ -21,15 +22,17 @@ license.workspace = true
 publish.workspace = true
 
 [features]
-default = ["std", "current"]
+default = ["std", "current", "fluent-macro"]
 
 alloc = []
 std = ["alloc", "fluent?/std"]
 current = ["dep:win32"]
 fluent = ["alloc", "dep:fluent"]
+fluent-macro = ["dep:fluent-macro"]
 
 [dependencies]
 fluent = { workspace = true, optional = true }
+fluent-macro = { workspace = true, optional = true }
 
 [target.'cfg(windows)'.dependencies]
 win32 = { git = "https://github.com/shipsimfan/lib-win32", optional = true }

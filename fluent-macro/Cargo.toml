@@ -1,0 +1,18 @@
+[package]
+name = "fluent-macro"
+description = "Definition of the fluent file loading macro"
+
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+fluent.workspace = true
+
+proc-macro-util.git = "https://github.com/shipsimfan/lib-proc-macro-util"

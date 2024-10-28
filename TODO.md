@@ -11,8 +11,6 @@
    5. FunctionReference
    6. SelectExpression
  2. Add `fluent!` procedural macro to load fluent bundles and build a module or set of modules full of keys from them
-   - Individual files represent single languages. Directories become publically available submodules after macro expansion
-   - Hide behind `proc_macro` default feature
    1. Simple messages of only text
    2. Simple terms of only text
    3. String and number literals
