@@ -6,6 +6,10 @@
 #![deny(rustdoc::redundant_explicit_links)]
 #![warn(rustdoc::broken_intra_doc_links)]
 
+use input::{IncludeFluentInput, IncludeFluentOptions};
+
+mod input;
+
 mod parse;
 mod to_tokens;
 
@@ -15,11 +19,15 @@ proc_macro_util::proc_macro_function!(
     ///
     /// # Format
     /// ```rs
-    /// include_fluent!("path");
+    /// include_fluent!("path" [ , option = value ]*);
     /// ```
     ///
-    /// where `path` is a string literal pointing to either a file or directory containing Fluent
-    /// resources.
+    /// where
+    ///  - `path` is a string literal pointing to either a file or directory containing Fluent
+    ///    resources
+    ///  - `option = value` is any number of option/value pairs separated by commas adjusting the
+    ///    behaviour of the output. The options are described below. The `option` is an identifier.
+    ///    The `value` is based on the option and may not be required.
     ///
     /// # Description
     /// If `path` points to a single file, the macro loads only that file, making a single language
@@ -34,7 +42,11 @@ proc_macro_util::proc_macro_function!(
     /// name. For example, "EN.ftl" will get the language identifier "EN" while "FR-fr.ftl" will get
     /// the identifier "FR-fr".
     ///
-    /// TODO: Support setting fallback language
+    /// # Options
+    /// The following options are defined:
+    ///  * `fluent` - This option takes a literal string and specifies which language will be used
+    ///               as the fallback language. If not provided, "EN" will be used as the fallback
+    ///               language.
     include_fluent -> IncludeFluent
 );
 
