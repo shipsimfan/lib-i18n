@@ -13,6 +13,6 @@ publish.workspace = true
 proc-macro = true
 
 [dependencies]
-fluent.workspace = true
+fluent = { workspace = true, features = ["std"] }
 
 proc-macro-util.git = "https://github.com/shipsimfan/lib-proc-macro-util"

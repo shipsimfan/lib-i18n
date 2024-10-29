@@ -6,12 +6,14 @@
 #![deny(rustdoc::redundant_explicit_links)]
 #![warn(rustdoc::broken_intra_doc_links)]
 
-use input::{IncludeFluentInput, IncludeFluentOptions};
-
 mod input;
+mod load;
 
 mod parse;
 mod to_tokens;
+
+use input::{IncludeFluentInput, IncludeFluentOptions};
+use load::{LoadedDirectory, LoadedEntry};
 
 proc_macro_util::proc_macro_function!(
     /// Loads Fluent translation files from the specified `path` and creates
