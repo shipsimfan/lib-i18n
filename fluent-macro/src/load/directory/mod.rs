@@ -1,5 +1,6 @@
 use fluent::FluentResource;
 
+mod get;
 mod load;
 
 /// A directory loaded from the file system
