@@ -1,4 +1,4 @@
-//! Framework for internationalization
+//! Utilities for getting and managing locales
 
 #![cfg_attr(all(not(test), not(feature = "std")), no_std)]
 #![deny(missing_docs)]
@@ -10,11 +10,12 @@
 #[cfg(feature = "alloc")]
 extern crate alloc;
 
-pub use locale;
-pub use translation;
+mod language_tag;
 
-#[cfg(feature = "fluent")]
-pub use fluent;
+#[cfg(feature = "current")]
+mod current;
 
-#[cfg(feature = "fluent-macro")]
-pub use fluent_macro::include_fluent;
+pub use language_tag::*;
+
+#[cfg(feature = "current")]
+pub use current::*;

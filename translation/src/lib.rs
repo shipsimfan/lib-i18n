@@ -1,4 +1,4 @@
-//! Framework for internationalization
+//! Utilities for displaying messages in different languages
 
 #![cfg_attr(all(not(test), not(feature = "std")), no_std)]
 #![deny(missing_docs)]
@@ -10,11 +10,12 @@
 #[cfg(feature = "alloc")]
 extern crate alloc;
 
-pub use locale;
-pub use translation;
+mod argument;
+mod display;
+mod message;
+mod message_key;
 
-#[cfg(feature = "fluent")]
-pub use fluent;
-
-#[cfg(feature = "fluent-macro")]
-pub use fluent_macro::include_fluent;
+pub use argument::Argument;
+pub use display::MessageDisplay;
+pub use message::Message;
+pub use message_key::MessageKey;

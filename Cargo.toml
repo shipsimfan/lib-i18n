@@ -9,6 +9,8 @@ publish = false
 [workspace.dependencies]
 fluent.path = "fluent"
 fluent-macro.path = "fluent-macro"
+locale.path = "locale"
+translation.path = "translation"
 
 [package]
 name = "i18n"
@@ -24,15 +26,14 @@ publish.workspace = true
 [features]
 default = ["std", "current", "fluent-macro"]
 
-alloc = []
-std = ["alloc", "fluent?/std"]
-current = ["dep:win32"]
+alloc = ["locale/alloc", "translation/alloc"]
+std = ["alloc", "locale/std", "translation/std", "fluent?/std"]
+current = ["locale/current", "translation/current"]
 fluent = ["alloc", "dep:fluent"]
 fluent-macro = ["dep:fluent-macro"]
 
 [dependencies]
 fluent = { workspace = true, optional = true }
 fluent-macro = { workspace = true, optional = true }
-
-[target.'cfg(windows)'.dependencies]
-win32 = { git = "https://github.com/shipsimfan/lib-win32", optional = true }
+locale.workspace = true
+translation.workspace = true

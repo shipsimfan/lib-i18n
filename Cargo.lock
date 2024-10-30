@@ -25,7 +25,8 @@ version = "0.1.0"
 dependencies = [
  "fluent 0.1.0",
  "fluent-macro",
- "win32",
+ "locale",
+ "translation",
 ]
 
 [[package]]
@@ -34,6 +35,13 @@ version = "0.1.0"
 source = "git+https://github.com/shipsimfan/lib-i18n#4a6503ca082a9ddc7bc2843abf001fc9452eb545"
 dependencies = [
  "fluent 0.1.0 (git+https://github.com/shipsimfan/lib-i18n)",
+ "win32",
+]
+
+[[package]]
+name = "locale"
+version = "0.1.0"
+dependencies = [
  "win32",
 ]
 
@@ -61,6 +69,13 @@ source = "git+https://github.com/shipsimfan/lib-proc-macro-util#98f0a9d346bab7ad
 dependencies = [
  "i18n 0.1.0 (git+https://github.com/shipsimfan/lib-i18n)",
  "proc-macro-util-base",
+]
+
+[[package]]
+name = "translation"
+version = "0.1.0"
+dependencies = [
+ "locale",
 ]
 
 [[package]]

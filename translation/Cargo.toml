@@ -1,0 +1,16 @@
+[package]
+name = "translation"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[features]
+alloc = ["locale/alloc"]
+std = ["alloc", "locale/std"]
+current = ["std", "locale/current"]
+
+[dependencies]
+locale.workspace = true
