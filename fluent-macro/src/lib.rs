@@ -8,12 +8,14 @@
 
 mod input;
 mod load;
+mod merge;
 
 mod parse;
 mod to_tokens;
 
 use input::{IncludeFluentInput, IncludeFluentOptions};
 use load::{LoadedDirectory, LoadedEntry};
+use merge::{MergedMessage, MergedModule};
 
 proc_macro_util::proc_macro_function!(
     /// Loads Fluent translation files from the specified `path` and creates
