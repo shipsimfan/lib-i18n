@@ -1,3 +1,4 @@
+use locale::LanguageTag;
 use proc_macro_util::Span;
 
 mod get;
@@ -10,5 +11,5 @@ use option::IncludeFluentOption;
 /// The options requested in the `include_fluent!` macro
 pub struct IncludeFluentOptions {
     /// The requested fallback language
-    fallback: Option<(String, Span)>,
+    fallback: Option<(LanguageTag<'static>, Span)>,
 }

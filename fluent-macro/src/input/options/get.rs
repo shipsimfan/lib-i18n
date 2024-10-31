@@ -1,12 +1,17 @@
 use crate::IncludeFluentOptions;
+use locale::LanguageTag;
 use proc_macro_util::Span;
 
 impl IncludeFluentOptions {
+    /// The default fallback language used when none is specified
+    pub const DEFAULT_FALLBACK: &LanguageTag<'static> =
+        &unsafe { LanguageTag::from_language_unchecked(b"EN") };
+
     /// Gets the requested fallback language
-    pub fn fallback(&self) -> &str {
+    pub fn fallback(&self) -> &LanguageTag<'static> {
         match &self.fallback {
             Some((fallback, _)) => fallback,
-            None => "EN",
+            None => Self::DEFAULT_FALLBACK,
         }
     }
 

@@ -5,6 +5,7 @@ mod directory;
 mod load;
 
 pub use directory::LoadedDirectory;
+use locale::LanguageTag;
 
 /// An entry in the filesystem tree that has been loaded
 pub enum LoadedEntry {
@@ -12,5 +13,5 @@ pub enum LoadedEntry {
     Directory((String, LoadedDirectory)),
 
     /// The entry is a file
-    File((String, FluentResource)),
+    File((LanguageTag<'static>, FluentResource)),
 }

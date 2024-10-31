@@ -1,3 +1,4 @@
+use locale::LanguageTag;
 use proc_macro_util::Span;
 
 mod parse;
@@ -7,7 +8,7 @@ pub(in crate::input) enum IncludeFluentOption {
     /// A specified fallback language
     Fallback {
         /// The request fallback value
-        value: String,
+        value: LanguageTag<'static>,
 
         /// The [`Span`] of the requested value
         value_span: Span,

@@ -1,4 +1,5 @@
 use super::IncludeFluentOption;
+use locale::LanguageTag;
 use proc_macro_util::{
     tokens::{Identifier, Literal},
     Error, Parse, Parser, Result, Token,
@@ -12,8 +13,27 @@ impl<'a> Parse<'a> for IncludeFluentOption {
             "fallback" => {
                 parser.parse::<Token![=]>()?;
                 let fallback = parser.parse::<&'a Literal>()?;
+                let mut fallback_str = fallback.to_string();
+
+                match match fallback_str.strip_prefix('"') {
+                    Some(missing_prefix) => missing_prefix,
+                    None => return Err(Error::new_at("expected a string", fallback.span())),
+                }
+                .strip_suffix('"')
+                {
+                    Some(fallback) => fallback_str = fallback.to_string(),
+                    None => return Err(Error::new_at("expected a string", fallback.span())),
+                };
+
+                let value = LanguageTag::new(fallback_str.as_bytes()).map_err(|error| {
+                    Error::new_at(
+                        format_args!("invalid fallback language \"{}\" - {}", fallback_str, error),
+                        fallback.span(),
+                    )
+                })?;
+
                 Ok(IncludeFluentOption::Fallback {
-                    value: fallback.to_string(),
+                    value,
                     value_span: fallback.span(),
                     name_span: name.span(),
                 })

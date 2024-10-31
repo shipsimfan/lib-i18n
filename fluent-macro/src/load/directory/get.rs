@@ -1,12 +1,13 @@
 use crate::LoadedDirectory;
 use fluent::FluentResource;
+use locale::LanguageTag;
 
 impl LoadedDirectory {
     /// Gets the resources loaded in this directory
-    pub fn resources(&self) -> impl Iterator<Item = (&str, &FluentResource)> {
+    pub fn resources(&self) -> impl Iterator<Item = (&LanguageTag, &FluentResource)> {
         self.resources
             .iter()
-            .map(|(name, resource)| (name.as_str(), resource))
+            .map(|(name, resource)| (name, resource))
     }
 
     /// Gets the sub-directories loaded in this directoy

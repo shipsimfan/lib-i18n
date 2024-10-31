@@ -1,4 +1,5 @@
 use crate::{LoadedDirectory, LoadedEntry};
+use locale::LanguageTag;
 use proc_macro_util::{Error, Result};
 use std::path::Path;
 
@@ -22,6 +23,15 @@ impl LoadedEntry {
                 "ftl" => {}
                 _ => return Ok(None),
             };
+
+            let name = LanguageTag::new(name.as_bytes()).map_err(|error| {
+                Error::new(format_args!(
+                    "invalid language tag \"{}\" for \"{}\" - {}",
+                    name,
+                    path.display(),
+                    error
+                ))
+            })?;
 
             fluent::parse_file(path)
                 .map(|resource| Some(LoadedEntry::File((name, resource))))

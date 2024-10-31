@@ -26,6 +26,19 @@ impl<'a> LanguageTag<'a> {
         })
     }
 
+    /// Creates a new [`LanguageTag`] from a `tag` containing just a language without checking its contents
+    pub const unsafe fn from_language_unchecked(tag: &[u8]) -> Self {
+        LanguageTag {
+            language: Language::new_unchecked(tag),
+            script: None,
+            region: None,
+            #[cfg(feature = "alloc")]
+            variants: alloc::borrow::Cow::Borrowed(&[]),
+            #[cfg(not(feature = "alloc"))]
+            variants: &[],
+        }
+    }
+
     /// Attempts to parse `tag` in to a new [`LanguageTag`]
     #[cfg(feature = "alloc")]
     pub fn new(tag: &[u8]) -> Result<Self, InvalidLanguageTag> {

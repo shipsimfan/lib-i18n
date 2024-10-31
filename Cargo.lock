@@ -16,6 +16,7 @@ name = "fluent-macro"
 version = "0.1.0"
 dependencies = [
  "fluent 0.1.0",
+ "locale",
  "proc-macro-util",
 ]
 
