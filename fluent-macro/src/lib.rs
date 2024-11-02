@@ -10,14 +10,20 @@ mod input;
 mod load;
 mod merge;
 mod message;
+mod module;
 
 mod parse;
+mod render;
 mod to_tokens;
+
+use std::collections::HashSet;
 
 use input::{IncludeFluentInput, IncludeFluentOptions};
 use load::{LoadedDirectory, LoadedEntry};
+use locale::LanguageTag;
 use merge::{MergedMessage, MergedModule};
 use message::IncludeFluentMessage;
+use module::IncludeFluentModule;
 
 proc_macro_util::proc_macro_function!(
     /// Loads Fluent translation files from the specified `path` and creates
@@ -56,10 +62,11 @@ proc_macro_util::proc_macro_function!(
     include_fluent -> IncludeFluent
 );
 
+/// The renderer for the include fluent
 struct IncludeFluent {
-    /// The submodules containing more messages
-    sub_modules: Vec<(String, IncludeFluent)>,
+    /// The root module
+    root: IncludeFluentModule,
 
-    /// The messages contained in this module
-    messages: Vec<IncludeFluentMessage>,
+    /// The set of supported languages
+    supported_languages: HashSet<LanguageTag<'static>>,
 }

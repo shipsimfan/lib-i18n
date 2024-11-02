@@ -7,8 +7,8 @@ impl<'a> Parse<'a> for IncludeFluent {
 
         let loaded = LoadedEntry::load(input.path())?.ok_or(Error::new("invalid path"))?;
 
-        let merged = MergedModule::merge_entry(&loaded);
+        let merged = MergedModule::merge_entry(&loaded)?;
 
-        todo!();
+        IncludeFluent::render(merged)
     }
 }

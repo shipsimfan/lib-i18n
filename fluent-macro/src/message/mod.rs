@@ -2,6 +2,7 @@ use fluent::FluentIdentifier;
 use format::IncludeFluentFormat;
 
 mod format;
+mod render;
 
 /// A single message which can be displayed in different languages
 pub struct IncludeFluentMessage {
