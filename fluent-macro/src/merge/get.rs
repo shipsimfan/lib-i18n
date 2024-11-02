@@ -4,7 +4,7 @@ use std::collections::HashMap;
 
 impl<'a> MergedModule<'a> {
     /// Gets the submodules that make up this module
-    pub fn sub_modules(&self) -> &[MergedModule<'a>] {
+    pub fn sub_modules(&self) -> &[(&str, MergedModule<'a>)] {
         &self.sub_modules
     }
 

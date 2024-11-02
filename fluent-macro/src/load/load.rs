@@ -34,7 +34,7 @@ impl LoadedEntry {
             })?;
 
             fluent::parse_file(path)
-                .map(|resource| Some(LoadedEntry::File((name, resource))))
+                .map(|resource| Some(LoadedEntry::File(name, resource)))
                 .map_err(|error| {
                     Error::new(format_args!(
                         "unable to read \"{}\" - {}",
@@ -44,7 +44,7 @@ impl LoadedEntry {
                 })
         } else {
             LoadedDirectory::load(path)
-                .map(|directory| Some(LoadedEntry::Directory((name, directory))))
+                .map(|directory| Some(LoadedEntry::Directory(name, directory)))
         }
     }
 }

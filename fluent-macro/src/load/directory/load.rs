@@ -27,8 +27,8 @@ impl LoadedDirectory {
             let path = entry.path();
 
             match LoadedEntry::load(path)? {
-                Some(LoadedEntry::File((name, resource))) => resources.push((name, resource)),
-                Some(LoadedEntry::Directory((name, directory))) => {
+                Some(LoadedEntry::File(name, resource)) => resources.push((name, resource)),
+                Some(LoadedEntry::Directory(name, directory)) => {
                     directories.push((name, directory))
                 }
                 None => {}

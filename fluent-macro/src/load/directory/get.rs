@@ -4,7 +4,7 @@ use locale::LanguageTag;
 
 impl LoadedDirectory {
     /// Gets the resources loaded in this directory
-    pub fn resources(&self) -> impl Iterator<Item = (&LanguageTag, &FluentResource)> {
+    pub fn resources(&self) -> impl Iterator<Item = (&LanguageTag<'static>, &FluentResource)> {
         self.resources
             .iter()
             .map(|(name, resource)| (name, resource))
