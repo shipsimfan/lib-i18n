@@ -9,6 +9,7 @@
 mod input;
 mod load;
 mod merge;
+mod message;
 
 mod parse;
 mod to_tokens;
@@ -16,6 +17,7 @@ mod to_tokens;
 use input::{IncludeFluentInput, IncludeFluentOptions};
 use load::{LoadedDirectory, LoadedEntry};
 use merge::{MergedMessage, MergedModule};
+use message::IncludeFluentMessage;
 
 proc_macro_util::proc_macro_function!(
     /// Loads Fluent translation files from the specified `path` and creates
@@ -54,4 +56,10 @@ proc_macro_util::proc_macro_function!(
     include_fluent -> IncludeFluent
 );
 
-struct IncludeFluent {}
+struct IncludeFluent {
+    /// The submodules containing more messages
+    sub_modules: Vec<(String, IncludeFluent)>,
+
+    /// The messages contained in this module
+    messages: Vec<IncludeFluentMessage>,
+}
