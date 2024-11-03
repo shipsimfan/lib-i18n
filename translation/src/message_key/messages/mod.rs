@@ -1,5 +1,4 @@
-use crate::Message;
-use locale::LanguageTag;
+use crate::{locale::LanguageTag, Message};
 
 mod deref;
 mod iter;

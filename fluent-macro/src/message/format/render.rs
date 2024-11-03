@@ -1,13 +1,15 @@
 use crate::IncludeFluentFormat;
 use fluent::{FluentPattern, FluentPatternElement, FluentResource};
-use locale::LanguageTag;
-use proc_macro_util::{Error, Result};
+use proc_macro_util::{
+    tokens::{Identifier, Literal},
+    Error, Result,
+};
 
 impl IncludeFluentFormat {
     /// Renders `pattern` into an [`IncludeFluentFormat`], using references in `resource` for
     /// placeables
     pub fn render(
-        language: LanguageTag<'static>,
+        language: Identifier,
         pattern: &FluentPattern,
         resource: &FluentResource,
     ) -> Result<Self> {
@@ -24,6 +26,9 @@ impl IncludeFluentFormat {
             }
         }
 
-        Ok(IncludeFluentFormat { language, string })
+        Ok(IncludeFluentFormat {
+            language,
+            string: Literal::new(string.as_str()),
+        })
     }
 }

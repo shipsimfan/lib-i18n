@@ -1,5 +1,4 @@
-use crate::{message_key::Messages, Message};
-use locale::LanguageTag;
+use crate::{locale::LanguageTag, message_key::Messages, Message};
 
 impl<'a, 'b, A> IntoIterator for &'b Messages<'a, A> {
     type IntoIter = core::slice::Iter<'b, (&'a LanguageTag<'a>, Message<A>)>;

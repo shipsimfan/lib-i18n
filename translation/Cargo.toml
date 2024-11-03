@@ -1,5 +1,5 @@
 [package]
-name = "translation"
+name = "i18n-translation"
 version.workspace = true
 authors.workspace = true
 edition.workspace = true
@@ -8,9 +8,9 @@ license.workspace = true
 publish.workspace = true
 
 [features]
-alloc = ["locale/alloc"]
-std = ["alloc", "locale/std"]
-current = ["std", "locale/current"]
+alloc = ["i18n-locale/alloc"]
+std = ["alloc", "i18n-locale/std"]
+current = ["std", "i18n-locale/current"]
 
 [dependencies]
-locale.workspace = true
+i18n-locale.workspace = true

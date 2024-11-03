@@ -7,10 +7,10 @@ license = "GPL-3.0-or-later"
 publish = false
 
 [workspace.dependencies]
-fluent.path = "fluent"
-fluent-macro.path = "fluent-macro"
-locale.path = "locale"
-translation.path = "translation"
+i18n-fluent.path = "fluent"
+i18n-fluent-macro.path = "fluent-macro"
+i18n-locale.path = "locale"
+i18n-translation.path = "translation"
 
 [package]
 name = "i18n"
@@ -26,14 +26,14 @@ publish.workspace = true
 [features]
 default = ["std", "current", "fluent-macro"]
 
-alloc = ["locale/alloc", "translation/alloc"]
-std = ["alloc", "locale/std", "translation/std", "fluent?/std"]
-current = ["locale/current", "translation/current"]
-fluent = ["alloc", "dep:fluent"]
-fluent-macro = ["dep:fluent-macro"]
+alloc = ["i18n-locale/alloc", "i18n-translation/alloc"]
+std = ["alloc", "i18n-locale/std", "i18n-translation/std", "i18n-fluent?/std"]
+current = ["i18n-locale/current", "i18n-translation/current"]
+fluent = ["alloc", "dep:i18n-fluent"]
+fluent-macro = ["dep:i18n-fluent-macro"]
 
 [dependencies]
-fluent = { workspace = true, optional = true }
-fluent-macro = { workspace = true, optional = true }
-locale.workspace = true
-translation.workspace = true
+i18n-fluent = { workspace = true, optional = true }
+i18n-fluent-macro = { workspace = true, optional = true }
+i18n-locale.workspace = true
+i18n-translation.workspace = true

@@ -1,6 +1,7 @@
 use crate::IncludeFluentMessage;
 
 mod render;
+mod to_tokens;
 
 /// A module of message keys and sub modules
 pub struct IncludeFluentModule {

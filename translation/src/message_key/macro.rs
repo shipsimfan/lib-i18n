@@ -13,8 +13,8 @@ macro_rules! message_key {
         }
 
         $(#[$meta])*
-        static $name: $crate::translation::MessageKey<$name> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::translation::message!($name, $($message)*)),
+        static $name: $crate::MessageKey<$name> = $crate::MessageKey::new(&[$(
+            ($tag, $crate::message!($name, $($message)*)),
         )*]);
     };
 
@@ -25,8 +25,8 @@ macro_rules! message_key {
         ]
     ) => {
         $(#[$meta])*
-        static $name: $crate::translation::MessageKey<$arguments> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::translation::message!($arguments, $($message)*)),
+        static $name: $crate::MessageKey<$arguments> = $crate::MessageKey::new(&[$(
+            ($tag, $crate::message!($arguments, $($message)*)),
         )*]);
     };
 
@@ -37,8 +37,8 @@ macro_rules! message_key {
         ]
     ) => {
         $(#[$meta])*
-        static $name: $crate::translation::MessageKey<()> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::translation::message!((), $($message)*)),
+        static $name: $crate::MessageKey<()> = $crate::MessageKey::new(&[$(
+            ($tag, $crate::message!((), $($message)*)),
         )*]);
     };
     (
@@ -53,8 +53,8 @@ macro_rules! message_key {
         }
 
         $(#[$meta])*
-        $vis static $name: $crate::translation::MessageKey<$name> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::translation::message!($name, $($message)*)),
+        $vis static $name: $crate::MessageKey<$name> = $crate::MessageKey::new(&[$(
+            ($tag, $crate::message!($name, $($message)*)),
         )*]);
     };
 
@@ -65,8 +65,8 @@ macro_rules! message_key {
         ]
     ) => {
         $(#[$meta])*
-        $vis static $name: $crate::translation::MessageKey<$arguments> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::translation::message!($arguments, $($message)*)),
+        $vis static $name: $crate::MessageKey<$arguments> = $crate::MessageKey::new(&[$(
+            ($tag, $crate::message!($arguments, $($message)*)),
         )*]);
     };
 
@@ -77,8 +77,8 @@ macro_rules! message_key {
         ]
     ) => {
         $(#[$meta])*
-        $vis static $name: $crate::translation::MessageKey<()> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::translation::message!((), $($message)*)),
+        $vis static $name: $crate::MessageKey<()> = $crate::MessageKey::new(&[$(
+            ($tag, $crate::message!((), $($message)*)),
         )*]);
     };
 }

@@ -1,5 +1,4 @@
-use crate::{message_key::Messages, Message, MessageKey};
-use locale::LanguageTag;
+use crate::{locale::LanguageTag, message_key::Messages, Message, MessageKey};
 
 impl<'a, A> MessageKey<'a, A> {
     /// Creates a new [`MessageKey`] from `messages` where the first message is used as the final fallback

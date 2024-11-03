@@ -1,5 +1,5 @@
 [package]
-name = "fluent-macro"
+name = "i18n-fluent-macro"
 description = "Definition of the fluent file loading macro"
 
 version.workspace = true
@@ -13,7 +13,7 @@ publish.workspace = true
 proc-macro = true
 
 [dependencies]
-fluent = { workspace = true, features = ["std"] }
-locale = { workspace = true, features = ["std"] }
+i18n-fluent = { workspace = true, features = ["std"] }
+i18n-locale = { workspace = true, features = ["std"] }
 
 proc-macro-util.git = "https://github.com/shipsimfan/lib-proc-macro-util"

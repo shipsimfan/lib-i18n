@@ -1,5 +1,4 @@
-use crate::{message_key::Messages, Message};
-use locale::LanguageTag;
+use crate::{locale::LanguageTag, message_key::Messages, Message};
 
 impl<'a, A> core::ops::Deref for Messages<'a, A> {
     type Target = [(&'a LanguageTag<'a>, Message<A>)];

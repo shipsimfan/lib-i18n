@@ -10,11 +10,11 @@
 #[cfg(feature = "alloc")]
 extern crate alloc;
 
-pub use locale;
-pub use translation;
+pub use i18n_locale as locale;
+pub use i18n_translation as translation;
 
 #[cfg(feature = "fluent")]
-pub use fluent;
+pub use i18n_fluent as fluent;
 
 #[cfg(feature = "fluent-macro")]
-pub use fluent_macro::include_fluent;
+pub use i18n_fluent_macro::include_fluent;

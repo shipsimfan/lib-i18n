@@ -1,5 +1,4 @@
-use crate::{Message, MessageKey};
-use locale::LanguageTag;
+use crate::{locale::LanguageTag, Message, MessageKey};
 
 impl<'a, A> MessageKey<'a, A> {
     /// Gets the message in the default locale

@@ -1,5 +1,5 @@
 [package]
-name = "locale"
+name = "i18n-locale"
 description = ""
 
 version.workspace = true

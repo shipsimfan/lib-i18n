@@ -19,3 +19,5 @@ pub use argument::Argument;
 pub use display::MessageDisplay;
 pub use message::Message;
 pub use message_key::MessageKey;
+
+pub use i18n_locale as locale;

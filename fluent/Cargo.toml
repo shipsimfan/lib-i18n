@@ -1,5 +1,5 @@
 [package]
-name = "fluent"
+name = "i18n-fluent"
 description = ""
 
 version.workspace = true
