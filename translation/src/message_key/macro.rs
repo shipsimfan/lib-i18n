@@ -14,7 +14,7 @@ macro_rules! message_key {
 
         $(#[$meta])*
         static $name: $crate::translation::MessageKey<$name> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::message!($name, $($message)*)),
+            ($tag, $crate::translation::message!($name, $($message)*)),
         )*]);
     };
 
@@ -26,7 +26,7 @@ macro_rules! message_key {
     ) => {
         $(#[$meta])*
         static $name: $crate::translation::MessageKey<$arguments> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::message!($arguments, $($message)*)),
+            ($tag, $crate::translation::message!($arguments, $($message)*)),
         )*]);
     };
 
@@ -38,7 +38,7 @@ macro_rules! message_key {
     ) => {
         $(#[$meta])*
         static $name: $crate::translation::MessageKey<()> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::message!((), $($message)*)),
+            ($tag, $crate::translation::message!((), $($message)*)),
         )*]);
     };
     (
@@ -54,7 +54,7 @@ macro_rules! message_key {
 
         $(#[$meta])*
         $vis static $name: $crate::translation::MessageKey<$name> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::message!($name, $($message)*)),
+            ($tag, $crate::translation::message!($name, $($message)*)),
         )*]);
     };
 
@@ -66,7 +66,7 @@ macro_rules! message_key {
     ) => {
         $(#[$meta])*
         $vis static $name: $crate::translation::MessageKey<$arguments> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::message!($arguments, $($message)*)),
+            ($tag, $crate::translation::message!($arguments, $($message)*)),
         )*]);
     };
 
@@ -78,7 +78,7 @@ macro_rules! message_key {
     ) => {
         $(#[$meta])*
         $vis static $name: $crate::translation::MessageKey<()> = $crate::translation::MessageKey::new(&[$(
-            ($tag, $crate::message!((), $($message)*)),
+            ($tag, $crate::translation::message!((), $($message)*)),
         )*]);
     };
 }
