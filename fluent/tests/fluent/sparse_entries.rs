@@ -1,4 +1,4 @@
-use fluent::{
+use i18n_fluent::{
     FluentAttribute, FluentBlockText, FluentInlineText, FluentJunk, FluentMessage, FluentResource,
 };
 

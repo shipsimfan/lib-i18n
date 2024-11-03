@@ -1,5 +1,5 @@
 use crate::IncludeFluentFormat;
-use fluent::{FluentPattern, FluentPatternElement, FluentResource};
+use i18n_fluent::{FluentPattern, FluentPatternElement, FluentResource};
 use proc_macro_util::{
     tokens::{Identifier, Literal},
     Error, Result,

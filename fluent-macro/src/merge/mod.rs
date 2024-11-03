@@ -1,4 +1,4 @@
-use fluent::FluentIdentifier;
+use i18n_fluent::FluentIdentifier;
 use std::collections::HashMap;
 
 mod get;

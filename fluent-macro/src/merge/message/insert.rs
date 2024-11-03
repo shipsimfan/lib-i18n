@@ -1,6 +1,6 @@
 use crate::MergedMessage;
-use fluent::{FluentPattern, FluentResource};
-use locale::LanguageTag;
+use i18n_fluent::{FluentPattern, FluentResource};
+use i18n_locale::LanguageTag;
 
 impl<'a> MergedMessage<'a> {
     /// Inserts a new `pattern` for a given `langauge`, returning true if another pattern was already in place for that language

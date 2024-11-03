@@ -1,6 +1,6 @@
 use crate::LoadedDirectory;
-use fluent::FluentResource;
-use locale::LanguageTag;
+use i18n_fluent::FluentResource;
+use i18n_locale::LanguageTag;
 
 impl LoadedDirectory {
     /// Gets the resources loaded in this directory

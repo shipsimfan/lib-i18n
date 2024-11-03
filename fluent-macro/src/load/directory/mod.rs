@@ -1,5 +1,5 @@
-use fluent::FluentResource;
-use locale::LanguageTag;
+use i18n_fluent::FluentResource;
+use i18n_locale::LanguageTag;
 
 mod get;
 mod load;

@@ -1,4 +1,4 @@
-use locale::LanguageTag;
+use i18n_locale::LanguageTag;
 use proc_macro_util::Span;
 
 mod get;

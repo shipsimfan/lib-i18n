@@ -1,6 +1,6 @@
 use crate::{LoadedDirectory, LoadedEntry, MergedMessage, MergedModule};
-use fluent::{FluentEntry, FluentIdentifier, FluentResource};
-use locale::LanguageTag;
+use i18n_fluent::{FluentEntry, FluentIdentifier, FluentResource};
+use i18n_locale::LanguageTag;
 use proc_macro_util::{Error, Result};
 use std::collections::HashMap;
 

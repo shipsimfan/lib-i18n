@@ -1,4 +1,4 @@
-use fluent::{
+use i18n_fluent::{
     FluentComment, FluentInlinePlaceable, FluentJunk, FluentMessage, FluentResource,
     FluentVariableReference,
 };

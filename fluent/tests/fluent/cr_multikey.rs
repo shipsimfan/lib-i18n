@@ -1,4 +1,4 @@
-use fluent::{FluentInlineText, FluentMessage, FluentResource};
+use i18n_fluent::{FluentInlineText, FluentMessage, FluentResource};
 
 pub fn create_target() -> FluentResource {
     let mut target = FluentResource::new();

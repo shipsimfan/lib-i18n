@@ -1,3 +1,5 @@
+use proc_macro_util::tokens::Identifier;
+
 mod format;
 mod render;
 mod to_tokens;
@@ -7,7 +9,7 @@ pub use format::IncludeFluentFormat;
 /// A single message which can be displayed in different languages
 pub struct IncludeFluentMessage {
     /// The name of this message
-    name: String,
+    name: Identifier,
 
     /// The formats used to display this message in the different languages
     format: Vec<IncludeFluentFormat>,

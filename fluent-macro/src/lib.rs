@@ -6,24 +6,25 @@
 #![deny(rustdoc::redundant_explicit_links)]
 #![warn(rustdoc::broken_intra_doc_links)]
 
+use std::collections::HashSet;
+
 mod input;
 mod load;
 mod merge;
 mod message;
 mod module;
+mod supported_language;
 
 mod parse;
 mod render;
 mod to_tokens;
 
-use std::collections::HashSet;
-
 use input::{IncludeFluentInput, IncludeFluentOptions};
 use load::{LoadedDirectory, LoadedEntry};
-use locale::LanguageTag;
 use merge::{MergedMessage, MergedModule};
 use message::{IncludeFluentFormat, IncludeFluentMessage};
 use module::IncludeFluentModule;
+use supported_language::SupportedLanguage;
 
 proc_macro_util::proc_macro_function!(
     /// Loads Fluent translation files from the specified `path` and creates
@@ -68,5 +69,5 @@ struct IncludeFluent {
     root: IncludeFluentModule,
 
     /// The set of supported languages
-    supported_languages: HashSet<LanguageTag<'static>>,
+    supported_languages: HashSet<SupportedLanguage>,
 }

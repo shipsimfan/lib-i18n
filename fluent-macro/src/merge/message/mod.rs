@@ -1,5 +1,5 @@
-use fluent::{FluentPattern, FluentResource};
-use locale::LanguageTag;
+use i18n_fluent::{FluentPattern, FluentResource};
+use i18n_locale::LanguageTag;
 use std::collections::HashMap;
 
 mod get;

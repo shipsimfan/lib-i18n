@@ -1,5 +1,5 @@
 use super::IncludeFluentOption;
-use locale::LanguageTag;
+use i18n_locale::LanguageTag;
 use proc_macro_util::{
     tokens::{Identifier, Literal},
     Error, Parse, Parser, Result, Token,

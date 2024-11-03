@@ -1,9 +1,5 @@
 use crate::IncludeFluentFormat;
-use proc_macro_util::{
-    to_tokens,
-    tokens::{Identifier, Literal},
-    Generator, ToTokens,
-};
+use proc_macro_util::{to_tokens, Generator, ToTokens};
 
 impl ToTokens for IncludeFluentFormat {
     fn to_tokens(self, generator: &mut Generator) {

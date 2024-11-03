@@ -1,5 +1,5 @@
 use crate::{LoadedDirectory, LoadedEntry};
-use locale::LanguageTag;
+use i18n_locale::LanguageTag;
 use proc_macro_util::{Error, Result};
 use std::path::Path;
 
@@ -33,7 +33,7 @@ impl LoadedEntry {
                 ))
             })?;
 
-            fluent::parse_file(path)
+            i18n_fluent::parse_file(path)
                 .map(|resource| Some(LoadedEntry::File(name, resource)))
                 .map_err(|error| {
                     Error::new(format_args!(

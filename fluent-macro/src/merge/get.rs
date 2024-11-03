@@ -1,5 +1,5 @@
 use crate::{MergedMessage, MergedModule};
-use fluent::FluentIdentifier;
+use i18n_fluent::FluentIdentifier;
 use std::collections::HashMap;
 
 impl<'a> MergedModule<'a> {
