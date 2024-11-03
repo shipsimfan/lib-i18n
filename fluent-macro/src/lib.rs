@@ -22,7 +22,7 @@ use input::{IncludeFluentInput, IncludeFluentOptions};
 use load::{LoadedDirectory, LoadedEntry};
 use locale::LanguageTag;
 use merge::{MergedMessage, MergedModule};
-use message::IncludeFluentMessage;
+use message::{IncludeFluentFormat, IncludeFluentMessage};
 use module::IncludeFluentModule;
 
 proc_macro_util::proc_macro_function!(
