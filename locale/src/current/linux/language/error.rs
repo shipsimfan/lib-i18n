@@ -1,6 +1,5 @@
 /// An error that can occur while trying to get the current language
-pub type CurrentLanguageError =
-    crate::locale::current::language::CurrentLanguageError<NoLanguageFound>;
+pub type CurrentLanguageError = crate::current::language::CurrentLanguageError<NoLanguageFound>;
 
 /// No language was found
 #[derive(Debug)]

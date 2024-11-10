@@ -8,8 +8,27 @@ macro_rules! message_key {
         ]
     ) => {
         #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
+        #[allow(non_camel_case_types)]
         struct $name {
-            $arguments
+            $($arguments)*
+        }
+
+        $(#[$meta])*
+        static $name: $crate::MessageKey<$name> = $crate::MessageKey::new(&[$(
+            ($tag, $crate::message!($name, $($message)*)),
+        )*]);
+    };
+
+    (
+        $(#[$meta: meta])*
+        $name: ident ($($generics: tt)*) { $($arguments: tt)* } [
+            $($tag: path => { $($message: tt)* },)*
+        ]
+    ) => {
+        #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
+        #[allow(non_camel_case_types)]
+        struct $name<$($generics)*> {
+            $($arguments)*
         }
 
         $(#[$meta])*
@@ -41,6 +60,7 @@ macro_rules! message_key {
             ($tag, $crate::message!((), $($message)*)),
         )*]);
     };
+
     (
         $(#[$meta: meta])*
         $vis: vis $name: ident { $($arguments: tt)* } [
@@ -48,8 +68,27 @@ macro_rules! message_key {
         ]
     ) => {
         #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
+        #[allow(non_camel_case_types)]
         $vis struct $name {
-            $arguments
+            $($arguments)*
+        }
+
+        $(#[$meta])*
+        $vis static $name: $crate::MessageKey<$name> = $crate::MessageKey::new(&[$(
+            ($tag, $crate::message!($name, $($message)*)),
+        )*]);
+    };
+
+    (
+        $(#[$meta: meta])*
+        $vis: vis $name: ident ($($generics: tt)*) { $($arguments: tt)* } [
+            $($tag: path => { $($message: tt)* },)*
+        ]
+    ) => {
+        #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
+        #[allow(non_camel_case_types)]
+        $vis struct $name<$($generics)*> {
+            $($arguments)*
         }
 
         $(#[$meta])*

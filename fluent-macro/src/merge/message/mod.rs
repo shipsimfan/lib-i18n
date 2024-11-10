@@ -1,5 +1,5 @@
 use crate::IncludeFluentVariable;
-use i18n_fluent::{FluentIdentifier, FluentPattern, FluentResource};
+use i18n_fluent::{FluentPattern, FluentResource};
 use i18n_locale::LanguageTag;
 use std::collections::HashMap;
 
@@ -13,5 +13,5 @@ pub struct MergedMessage<'a> {
     languages: HashMap<&'a LanguageTag<'static>, (&'a FluentPattern, &'a FluentResource)>,
 
     /// The set of variables for this message
-    variables: HashMap<FluentIdentifier, IncludeFluentVariable>,
+    variables: HashMap<String, IncludeFluentVariable>,
 }

@@ -16,7 +16,7 @@ impl ToTokens for SupportedLanguage {
         } = self;
 
         to_tokens! { generator
-            pub const #identifier: ::i18n::locale::LanguageTag<'static> = ::i18n::locale::LanguageTag
+            pub static #identifier: &'static ::i18n::locale::LanguageTag<'static> = &::i18n::locale::LanguageTag
         };
 
         let mut group = generator.group_brace();
@@ -58,9 +58,16 @@ impl ToTokens for SupportedLanguage {
         }
 
         to_tokens! { group
-            variants:
+            variants: ::i18n::locale::Variant::from_slice
         };
-        let mut variant_group = group.group_bracket();
+
+        let mut variant_outside_group = group.group_parenthesis();
+        let variant_outside_group = &mut variant_outside_group;
+        to_tokens! { variant_outside_group
+            &
+        }
+
+        let mut variant_group = variant_outside_group.group_bracket();
         let variant_group = &mut variant_group;
         for variant in variants.iter() {
             let variant = Literal::new(variant.as_str());

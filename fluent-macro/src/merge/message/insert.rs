@@ -27,7 +27,7 @@ impl<'a> MergedMessage<'a> {
                     variable_reference,
                 )) => {
                     match self.variables.insert(
-                        variable_reference.name().clone(),
+                        variable_reference.name().to_string(),
                         IncludeFluentVariable::Display,
                     ) {
                         Some(IncludeFluentVariable::Display) | None => {}
@@ -47,14 +47,12 @@ impl<'a> MergedMessage<'a> {
             }
         }
 
-        self.languages
-            .insert(language, (pattern, resource))
-            .map(|_| ())
-            .ok_or_else(|| {
-                Error::new(format_args!(
-                    "more than one message defined for key \"{}\" in language \"{}\"",
-                    name, language,
-                ))
-            })
+        match self.languages.insert(language, (pattern, resource)) {
+            Some(_) => Err(Error::new(format_args!(
+                "more than one message defined for key \"{}\" in language \"{}\"",
+                name, language,
+            ))),
+            None => Ok(()),
+        }
     }
 }

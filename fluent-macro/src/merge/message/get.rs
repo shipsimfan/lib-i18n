@@ -1,5 +1,5 @@
 use crate::{IncludeFluentVariable, MergedMessage};
-use i18n_fluent::{FluentIdentifier, FluentPattern, FluentResource};
+use i18n_fluent::{FluentPattern, FluentResource};
 use i18n_locale::LanguageTag;
 use std::collections::HashMap;
 
@@ -12,7 +12,7 @@ impl<'a> MergedMessage<'a> {
     }
 
     /// Gets the variables required for this message
-    pub fn variables(&self) -> &HashMap<FluentIdentifier, IncludeFluentVariable> {
+    pub fn variables(&self) -> &HashMap<String, IncludeFluentVariable> {
         &self.variables
     }
 }

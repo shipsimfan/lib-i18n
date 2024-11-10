@@ -10,9 +10,32 @@ impl ToTokens for IncludeFluentMessage {
         } = self;
 
         to_tokens! { generator
-            ::i18n::translation::message_key!(pub #name [
-                #format
-            ]);
+            ::i18n::translation::message_key!
+        };
+
+        let mut group = generator.group_parenthesis();
+        let group = &mut group;
+
+        to_tokens! { group
+            pub #name
+        };
+
+        if variables.len() > 0 {
+            to_tokens! { group
+                ('a) {
+                    #variables
+                }
+            };
         }
+
+        to_tokens! { group
+            [
+                #format
+            ]
+        };
+
+        to_tokens! { generator
+            ;
+        };
     }
 }

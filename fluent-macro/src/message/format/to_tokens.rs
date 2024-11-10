@@ -10,7 +10,7 @@ impl ToTokens for IncludeFluentFormat {
         } = self;
 
         to_tokens! { generator
-            #language => { |args, f| ::std::write!(f, #string #inserts) },
+            #language => { |args, f| { ::core::write!(f, #string #inserts) } },
         }
     }
 }

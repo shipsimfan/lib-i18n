@@ -7,6 +7,7 @@ pub struct Variant {
 mod as_ref;
 mod display;
 mod eq;
+mod from_slice;
 mod iter;
 mod new;
 
