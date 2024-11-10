@@ -7,7 +7,7 @@ impl LoadedEntry {
     pub fn load<P: AsRef<Path>>(path: P) -> Result<Option<Self>> {
         let path = path.as_ref();
 
-        let name = match path.file_name() {
+        let name = match path.file_stem() {
             Some(name) => name.to_string_lossy().to_string(),
             None => return Err(Error::new("invalid path")),
         };

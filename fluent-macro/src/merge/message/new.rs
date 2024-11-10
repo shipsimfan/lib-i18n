@@ -6,6 +6,7 @@ impl<'a> MergedMessage<'a> {
     pub fn new() -> Self {
         MergedMessage {
             languages: HashMap::new(),
+            variables: HashMap::new(),
         }
     }
 }

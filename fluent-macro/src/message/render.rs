@@ -1,6 +1,6 @@
 use crate::{IncludeFluentFormat, IncludeFluentMessage, MergedMessage, SupportedLanguage};
 use i18n_fluent::FluentIdentifier;
-use proc_macro_util::{tokens::Identifier, Result};
+use proc_macro_util::{tokens::Identifier, Result, Token};
 use std::collections::HashSet;
 
 impl IncludeFluentMessage {
@@ -23,8 +23,14 @@ impl IncludeFluentMessage {
             format.push(IncludeFluentFormat::render(language, pattern, resource)?);
         }
 
+        let mut variables = Vec::new();
+        for (variable_name, variable_type) in message.variables() {
+            variables.push((Identifier::new(&variable_name), Token![:](), *variable_type));
+        }
+
         Ok(IncludeFluentMessage {
             name: Identifier::new(&name.to_string()),
+            variables,
             format,
         })
     }

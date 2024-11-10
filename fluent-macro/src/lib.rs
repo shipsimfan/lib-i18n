@@ -22,7 +22,7 @@ mod to_tokens;
 use input::{IncludeFluentInput, IncludeFluentOptions};
 use load::{LoadedDirectory, LoadedEntry};
 use merge::{MergedMessage, MergedModule};
-use message::{IncludeFluentFormat, IncludeFluentMessage};
+use message::{IncludeFluentFormat, IncludeFluentMessage, IncludeFluentVariable};
 use module::IncludeFluentModule;
 use supported_language::SupportedLanguage;
 

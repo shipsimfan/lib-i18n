@@ -1,4 +1,7 @@
+use insert::IncludeFluentFormatInsert;
 use proc_macro_util::tokens::{Identifier, Literal};
+
+mod insert;
 
 mod render;
 mod to_tokens;
@@ -10,5 +13,7 @@ pub struct IncludeFluentFormat {
 
     /// The actual format string
     string: Literal,
-    // TODO: Add inserts
+
+    /// The variables to be inserted into the format
+    inserts: Vec<IncludeFluentFormatInsert>,
 }

@@ -63,12 +63,7 @@ impl<'a> MergedModule<'a> {
                 }
             };
 
-            if message.insert(language, pattern, resource) {
-                return Err(Error::new(format_args!(
-                    "more than one message defined for key \"{}\" in language \"{}\"",
-                    name, language,
-                )));
-            }
+            message.insert(name, language, pattern, resource)?;
         }
 
         Ok(())
