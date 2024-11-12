@@ -15,7 +15,7 @@ pub struct IncludeFluentMessage {
     name: Identifier,
 
     /// The variables needed for this message
-    variables: Vec<(Identifier, Token![:], IncludeFluentVariable)>,
+    variables: Vec<(Token![pub], Identifier, Token![:], IncludeFluentVariable)>,
 
     /// The formats used to display this message in the different languages
     format: Vec<IncludeFluentFormat>,

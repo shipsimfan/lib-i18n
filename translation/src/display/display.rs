@@ -1,7 +1,7 @@
 use crate::MessageDisplay;
 
-impl<'a, A> core::fmt::Display for MessageDisplay<'a, A> {
+impl<Arguments> core::fmt::Display for MessageDisplay<Arguments> {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        (self.message.display)(&self.arguments, f)
+        (self.message)(&self.arguments, f)
     }
 }

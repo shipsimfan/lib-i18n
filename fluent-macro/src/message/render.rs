@@ -25,7 +25,12 @@ impl IncludeFluentMessage {
 
         let mut variables = Vec::new();
         for (variable_name, variable_type) in message.variables() {
-            variables.push((Identifier::new(&variable_name), Token![:](), *variable_type));
+            variables.push((
+                Token![pub](),
+                Identifier::new(&variable_name),
+                Token![:](),
+                *variable_type,
+            ));
         }
 
         Ok(IncludeFluentMessage {

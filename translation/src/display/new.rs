@@ -1,8 +1,8 @@
 use crate::{Message, MessageDisplay};
 
-impl<'a, A> MessageDisplay<'a, A> {
+impl<Arguments> MessageDisplay<Arguments> {
     /// Creates a new [`MessageDisplay`] for `message` with `arguments`
-    pub(crate) const fn new(message: &'a Message<A>, arguments: &'a A) -> Self {
+    pub(crate) const fn new(message: Message<Arguments>, arguments: Arguments) -> Self {
         MessageDisplay { message, arguments }
     }
 }

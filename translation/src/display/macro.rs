@@ -19,27 +19,29 @@ macro_rules! m {
 #[macro_export]
 #[cfg(feature = "current")]
 macro_rules! m {
-    ($key: path, locale = $locale: expr, $($name: ident => $value: expr),+) => {
-        $key.get($locale).display(&$key {$(
+    ($key: ident, locale = $locale: expr, $($name: ident => $value: expr),+) => {
+        <$key as $crate::MessageKey>::get($locale, $key {$(
             $name: $value,
         )+})
     };
 
-    ($key: expr, locale = $locale: expr) => {
-        $key.get($locale).display(&())
+    ($key: ident, locale = $locale: expr) => {
+        <$key as $crate::MessageKey>::get($locale, ())
     };
-    ($key: expr, $($name: ident => $value: expr),+) => {
+    ($key: ident, $($name: ident => $value: expr),+) => {{
         match &*$crate::locale::CURRENT_LANGUAGE {
-            Some(language) => $key.get(language.clone()),
-            None => $key.default(),
-        }.display(&$key {$(
+            Some(language) => <$key as $crate::MessageKey>::get(language.clone(), $key { $(
             $name: $value,
-        )+})
-    };
-    ($key: expr) => {
+        )+ }),
+            None => <$key as $crate::MessageKey>::default($key { $(
+            $name: $value,
+        )+ }),
+        }
+    }};
+    ($key: ident) => {
         match &*$crate::locale::CURRENT_LANGUAGE {
-            Some(language) => $key.get(language.clone()),
-            None => $key.default(),
-        }.display(&())
+            Some(language) => <$key as $crate::MessageKey>::get(language.clone(), ()),
+            None => <$key as $crate::MessageKey>::default(()),
+        }
     };
 }

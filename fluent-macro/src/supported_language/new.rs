@@ -4,7 +4,8 @@ use proc_macro_util::tokens::Identifier;
 
 impl SupportedLanguage {
     pub fn new(language: &LanguageTag<'static>) -> Self {
-        let identifier = Identifier::new(&language.to_string().replace('-', "_"));
+        let identifier =
+            Identifier::new(&language.to_string().to_ascii_uppercase().replace('-', "_"));
 
         SupportedLanguage {
             identifier,

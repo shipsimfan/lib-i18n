@@ -4,11 +4,11 @@ mod display;
 mod r#macro;
 mod new;
 
-/// A message provided with arguments which can be [`Display`](core::fmt::Display)ed
-pub struct MessageDisplay<'a, A> {
+/// A [`Message`] provided with `Arguments` which can be [`Display`](core::fmt::Display)ed
+pub struct MessageDisplay<Arguments: Sized> {
     /// The message to display
-    message: &'a Message<A>,
+    message: Message<Arguments>,
 
     /// The arguments to use
-    arguments: &'a A,
+    arguments: Arguments,
 }
