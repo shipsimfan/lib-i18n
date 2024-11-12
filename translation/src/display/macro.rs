@@ -19,22 +19,22 @@ macro_rules! m {
 #[macro_export]
 #[cfg(feature = "current")]
 macro_rules! m {
-    ($key: ident, locale = $locale: expr, $($name: ident => $value: expr),+) => {
+    ($key: ident, locale = $locale: expr, $($name: ident $(=> $value: expr)*),+) => {
         <$key as $crate::MessageKey>::get($locale, $key {$(
-            $name: $value,
+            $name $(: $value)*,
         )+})
     };
 
     ($key: ident, locale = $locale: expr) => {
         <$key as $crate::MessageKey>::get($locale, ())
     };
-    ($key: ident, $($name: ident => $value: expr),+) => {{
+    ($key: ident, $($name: ident $(=> $value: expr)*),+) => {{
         match &*$crate::locale::CURRENT_LANGUAGE {
             Some(language) => <$key as $crate::MessageKey>::get(language.clone(), $key { $(
-            $name: $value,
+            $name $(: $value)*,
         )+ }),
             None => <$key as $crate::MessageKey>::default($key { $(
-            $name: $value,
+            $name $(: $value)*,
         )+ }),
         }
     }};
