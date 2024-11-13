@@ -1,6 +1,5 @@
 use crate::IncludeFluentOptions;
 use i18n_locale::LanguageTag;
-use proc_macro_util::Span;
 
 impl IncludeFluentOptions {
     /// The default fallback language used when none is specified
@@ -12,14 +11,6 @@ impl IncludeFluentOptions {
         match &self.fallback {
             Some((fallback, _)) => fallback,
             None => Self::DEFAULT_FALLBACK,
-        }
-    }
-
-    /// Gets the [`Span`] of the request fallback language
-    pub fn fallback_span(&self) -> Span {
-        match &self.fallback {
-            Some((_, span)) => *span,
-            None => Span::call_site(),
         }
     }
 }

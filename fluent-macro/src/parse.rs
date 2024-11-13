@@ -9,6 +9,6 @@ impl<'a> Parse<'a> for IncludeFluent {
 
         let merged = MergedModule::merge_entry(&loaded)?;
 
-        IncludeFluent::render(merged)
+        IncludeFluent::render(input.fallback(), merged)
     }
 }

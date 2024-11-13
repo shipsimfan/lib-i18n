@@ -6,7 +6,8 @@ impl ToTokens for IncludeFluentMessage {
         let IncludeFluentMessage {
             name,
             variables,
-            format,
+            fallback,
+            formats,
         } = self;
 
         to_tokens! { generator
@@ -30,7 +31,8 @@ impl ToTokens for IncludeFluentMessage {
 
         to_tokens! { group
             [
-                #format
+                #fallback
+                #formats
             ]
         };
 

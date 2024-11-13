@@ -31,6 +31,7 @@ impl<'a> MergedMessage<'a> {
                         IncludeFluentVariable::Display,
                     ) {
                         Some(IncludeFluentVariable::Display) | None => {}
+                        #[allow(unreachable_patterns)]
                         _ => {
                             return Err(Error::new(format_args!(
                                 "conflicting types for variable \"{}\" in message \"{}\"",

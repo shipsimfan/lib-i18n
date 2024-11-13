@@ -14,7 +14,7 @@ impl IncludeFluentFormat {
     pub fn render(
         language: Identifier,
         pattern: &FluentPattern,
-        resource: &FluentResource,
+        _resource: &FluentResource,
     ) -> Result<Self> {
         let mut string = String::new();
         let mut inserts = Vec::new();

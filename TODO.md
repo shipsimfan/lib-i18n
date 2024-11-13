@@ -11,12 +11,11 @@
    5. FunctionReference
    6. SelectExpression
  2. Add `fluent!` procedural macro to load fluent bundles and build a module or set of modules full of keys from them
-   1. Add fallback support
-   2. String and number literals
-   3. Message references
-   4. Term references
-   5. Function references
-   6. Select expression
+   1. String and number literals
+   2. Message references
+   3. Term references
+   4. Function references
+   5. Select expression
  3. Add support for locale specific numbers
    1. Add `NUMBER` function without currency support to `fluent!`
  4. Add support for locale specific currency
