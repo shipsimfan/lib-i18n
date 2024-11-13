@@ -13,17 +13,7 @@ macro_rules! message {
 
     (
         $(#[$meta: meta])*
-        $arguments: ty, $vis: vis $name: ident $(<$lifetime: lifetime>)* $format: literal $(, $param: ident)*
-    ) => {
-        $(#[$meta])*
-        fn $name$(<$lifetime>)*(args: &$arguments, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            ::core::write!(f, $format $(, args.$param)*)
-        }
-    };
-
-    (
-        $(#[$meta: meta])*
-        $arguments: ty, $vis: vis $name: ident $(<$lifetime: lifetime>)* = $message: expr
+        $arguments: ty, $vis: vis $name: ident $(<$lifetime: lifetime>)* $message: expr
     ) => {
         $(#[$meta])*
         fn $name$(<$lifetime>)*(_: &$arguments, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {

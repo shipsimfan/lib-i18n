@@ -3,121 +3,157 @@
 macro_rules! message_key {
     (
         $(#[$meta: meta])*
-        $name: ident { $($arguments: tt)* } [
-            $($tag: path => { $($message: tt)* },)*
-        ]
-    ) => {
-        #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
-        #[allow(non_camel_case_types)]
-        struct $name {
-            $($arguments)*
-        }
-
-        $(#[$meta])*
-        static $name: $crate::MessageKey<$name> = $crate::MessageKey::new(&[$(
-            ($tag, $crate::message!($name, $($message)*)),
-        )*]);
-    };
-
-    (
-        $(#[$meta: meta])*
-        $name: ident ($($generics: tt)*) { $($arguments: tt)* } [
-            $($tag: path => { $($message: tt)* },)*
-        ]
-    ) => {
-        #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
-        #[allow(non_camel_case_types)]
-        struct $name<$($generics)*> {
-            $($arguments)*
-        }
-
-        $(#[$meta])*
-        static $name: $crate::MessageKey<$name> = $crate::MessageKey::new(&[$(
-            ($tag, $crate::message!($name, $($message)*)),
-        )*]);
-    };
-
-    (
-        $(#[$meta: meta])*
-        $name: ident $arguments: path [
-            $($tag: path => { $($message: tt)* },)*
-        ]
-    ) => {
-        $(#[$meta])*
-        static $name: $crate::MessageKey<$arguments> = $crate::MessageKey::new(&[$(
-            ($tag, $crate::message!($arguments, $($message)*)),
-        )*]);
-    };
-
-    (
-        $(#[$meta: meta])*
-        $name: ident [
-            $($tag: path => { $($message: tt)* },)*
-        ]
-    ) => {
-        $(#[$meta])*
-        static $name: $crate::MessageKey<()> = $crate::MessageKey::new(&[$(
-            ($tag, $crate::message!((), $($message)*)),
-        )*]);
-    };
-
-    (
-        $(#[$meta: meta])*
         $vis: vis $name: ident { $($arguments: tt)* } [
-            $($tag: path => { $($message: tt)* },)*
+            $first_tag: ident => { $($first_message: tt)+ },
+            $($tag: ident => { $($message: tt)+ },)*
         ]
     ) => {
-        #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
-        #[allow(non_camel_case_types)]
+        $(#[$meta])*
         $vis struct $name {
             $($arguments)*
         }
 
-        $(#[$meta])*
-        $vis static $name: $crate::MessageKey<$name> = $crate::MessageKey::new(&[$(
-            ($tag, $crate::message!($name, $($message)*)),
-        )*]);
+        impl $name {
+            $crate::message!(#[allow(non_snake_case)] $name, $first_tag $($first_message)+);
+            $($crate::message!(#[allow(non_snake_case)] $name, $tag $($message)+);)*
+        }
+
+        impl $crate::MessageKey for $name {
+            type Arguments<'a> = $name;
+
+            fn default_message<'a>() -> $crate::Message<Self::Arguments<'a>> {
+                Self::$first_tag
+            }
+
+            fn try_get_message<'a>(
+                language: &$crate::locale::LanguageTag,
+            ) -> Option<$crate::Message<Self::Arguments<'a>>> {
+                if language == $first_tag {
+                    return Some(Self::$first_tag);
+                }
+
+                $(if language == $tag {
+                    return Some(Self::$tag)
+                })*
+
+                None
+            }
+        }
     };
 
     (
         $(#[$meta: meta])*
-        $vis: vis $name: ident ($($generics: tt)*) { $($arguments: tt)* } [
-            $($tag: path => { $($message: tt)* },)*
+        $vis: vis $name: ident<'a> { $($arguments: tt)* } [
+            $first_tag: ident => { $($first_message: tt)+ },
+            $($tag: ident => { $($message: tt)+ },)*
         ]
     ) => {
-        #[doc = ::core::concat!("Arguments for [`", ::core::stringify!($name), "`]")]
-        #[allow(non_camel_case_types)]
-        $vis struct $name<$($generics)*> {
+        $(#[$meta])*
+        $vis struct $name<'a> {
             $($arguments)*
         }
 
-        $(#[$meta])*
-        $vis static $name: $crate::MessageKey<$name> = $crate::MessageKey::new(&[$(
-            ($tag, $crate::message!($name, $($message)*)),
-        )*]);
+        impl<'a> $name<'a> {
+            $crate::message!(#[allow(non_snake_case)] $name, $first_tag $($first_message)+);
+            $($crate::message!(#[allow(non_snake_case)] $name, $tag $($message)+);)*
+        }
+
+        impl<'a> $crate::MessageKey for $name<'a> {
+            type Arguments<'b> = $name<'b>;
+
+            fn default_message<'b>() -> $crate::Message<Self::Arguments<'b>> {
+                Self::$first_tag
+            }
+
+            fn try_get_message<'b>(
+                language: &$crate::locale::LanguageTag,
+            ) -> Option<$crate::Message<Self::Arguments<'b>>> {
+                if language == $first_tag {
+                    return Some(Self::$first_tag);
+                }
+
+                $(if language == $tag {
+                    return Some(Self::$tag)
+                })*
+
+                None
+            }
+        }
     };
 
     (
         $(#[$meta: meta])*
-        $vis: vis $name: ident $arguments: path [
-            $($tag: path => { $($message: tt)* },)*
+        $vis: vis $name: ident with $arguments: ident$(<$lifetime: lifetime>)* [
+            $first_tag: ident => { $($first_message: tt)+ },
+            $($tag: ident => { $($message: tt)+ },)*
         ]
     ) => {
         $(#[$meta])*
-        $vis static $name: $crate::MessageKey<$arguments> = $crate::MessageKey::new(&[$(
-            ($tag, $crate::message!($arguments, $($message)*)),
-        )*]);
+        $vis struct $name;
+
+        impl $name {
+            $crate::message!(#[allow(non_snake_case)] $arguments, $first_tag $($first_message)+);
+            $($crate::message!(#[allow(non_snake_case)] $arguments, $tag $($message)+);)*
+        }
+
+        impl $crate::MessageKey for $name {
+            type Arguments<'a> = $arguments$(<$lifetime>)*;
+
+            fn default_message<'a>() -> $crate::Message<Self::Arguments<'a>> {
+                Self::$first_tag
+            }
+
+            fn try_get_message<'a>(
+                language: &$crate::locale::LanguageTag,
+            ) -> Option<$crate::Message<Self::Arguments<'a>>> {
+                if language == $first_tag {
+                    return Some(Self::$first_tag);
+                }
+
+                $(if language == $tag {
+                    return Some(Self::$tag)
+                })*
+
+                None
+            }
+        }
     };
 
     (
         $(#[$meta: meta])*
         $vis: vis $name: ident [
-            $($tag: path => { $($message: tt)* },)*
+            $first_tag: ident => { $($first_message: tt)+ },
+            $($tag: ident => { $($message: tt)+ },)*
         ]
     ) => {
         $(#[$meta])*
-        $vis static $name: $crate::MessageKey<()> = $crate::MessageKey::new(&[$(
-            ($tag, $crate::message!((), $($message)*)),
-        )*]);
+        $vis struct $name;
+
+        impl $name {
+            $crate::message!(#[allow(non_snake_case)] (), $first_tag $($first_message)+);
+            $($crate::message!(#[allow(non_snake_case)] (), $tag $($message)+);)*
+        }
+
+        impl $crate::MessageKey for $name {
+            type Arguments<'a> = ();
+
+            fn default_message<'a>() -> $crate::Message<Self::Arguments<'a>> {
+                Self::$first_tag
+            }
+
+            fn try_get_message<'a>(
+                language: &$crate::locale::LanguageTag,
+            ) -> Option<$crate::Message<Self::Arguments<'a>>> {
+                if language == $first_tag {
+                    return Some(Self::$first_tag);
+                }
+
+                $(if language == $tag {
+                    return Some(Self::$tag)
+                })*
+
+                None
+            }
+        }
     };
 }
