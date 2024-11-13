@@ -22,7 +22,7 @@ impl ToTokens for IncludeFluentMessage {
 
         if variables.len() > 0 {
             to_tokens! { group
-                ('a) {
+                <'a> {
                     #variables
                 }
             };

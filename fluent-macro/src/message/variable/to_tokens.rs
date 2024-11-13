@@ -6,7 +6,7 @@ impl ToTokens for IncludeFluentVariable {
         match self {
             IncludeFluentVariable::Display => {
                 to_tokens! { generator
-                    &'a str,
+                    &'a dyn ::core::fmt::Display,
                 };
             }
         }
