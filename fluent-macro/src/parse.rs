@@ -5,7 +5,8 @@ impl<'a> Parse<'a> for IncludeFluent {
     fn parse(parser: &mut Parser<'a>) -> Result<Self> {
         let input = parser.parse::<IncludeFluentInput>()?;
 
-        let loaded = LoadedEntry::load(input.path())?.ok_or(Error::new("invalid path"))?;
+        let loaded = LoadedEntry::load(std::env::current_dir().unwrap().join(input.path()))?
+            .ok_or(Error::new("invalid path"))?;
 
         let merged = MergedModule::merge_entry(&loaded)?;
 
