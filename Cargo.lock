@@ -35,7 +35,7 @@ dependencies = [
 [[package]]
 name = "i18n-locale"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-i18n#481851a2ff9bddffacee4700f32a9916acd2f44c"
+source = "git+https://github.com/shipsimfan/lib-i18n#501d560030dbe715c75cd3c56baf53fb2c751441"
 dependencies = [
  "win32",
 ]
@@ -50,7 +50,7 @@ dependencies = [
 [[package]]
 name = "i18n-translation"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-i18n#481851a2ff9bddffacee4700f32a9916acd2f44c"
+source = "git+https://github.com/shipsimfan/lib-i18n#501d560030dbe715c75cd3c56baf53fb2c751441"
 dependencies = [
  "i18n-locale 0.1.0 (git+https://github.com/shipsimfan/lib-i18n)",
 ]
@@ -58,7 +58,7 @@ dependencies = [
 [[package]]
 name = "proc-macro-util"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-proc-macro-util#d5278ec909ee949034c145c793a1f0616c012b0c"
+source = "git+https://github.com/shipsimfan/lib-proc-macro-util#4d02fbad980be3c7f64bc7cbb7a25a729bbf9dfe"
 dependencies = [
  "proc-macro-util-base",
  "proc-macro-util-macros",
@@ -67,7 +67,7 @@ dependencies = [
 [[package]]
 name = "proc-macro-util-base"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-proc-macro-util#d5278ec909ee949034c145c793a1f0616c012b0c"
+source = "git+https://github.com/shipsimfan/lib-proc-macro-util#4d02fbad980be3c7f64bc7cbb7a25a729bbf9dfe"
 dependencies = [
  "i18n-translation 0.1.0 (git+https://github.com/shipsimfan/lib-i18n)",
 ]
@@ -75,7 +75,7 @@ dependencies = [
 [[package]]
 name = "proc-macro-util-macros"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-proc-macro-util#d5278ec909ee949034c145c793a1f0616c012b0c"
+source = "git+https://github.com/shipsimfan/lib-proc-macro-util#4d02fbad980be3c7f64bc7cbb7a25a729bbf9dfe"
 dependencies = [
  "i18n-translation 0.1.0 (git+https://github.com/shipsimfan/lib-i18n)",
  "proc-macro-util-base",
@@ -84,4 +84,4 @@ dependencies = [
 [[package]]
 name = "win32"
 version = "0.1.0"
-source = "git+https://github.com/shipsimfan/lib-win32#5a02e6e46a5a4d750527c553f2747d375f48a7cf"
+source = "git+https://github.com/shipsimfan/lib-win32#52ff91ddef86b5e70fec2b7c960d71a79f60b098"
