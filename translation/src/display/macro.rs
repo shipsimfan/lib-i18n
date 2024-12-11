@@ -4,7 +4,8 @@
 #[cfg(not(feature = "current"))]
 macro_rules! m {
     ($key: path, locale = $locale: expr, $($name: ident => $value: expr),+) => {
-        $key.get($locale).display(&$key {$(
+        use $key as __MESSAGE;
+        $key.get($locale).display(&__MESSAGE {$(
             $name: $value,
         )+})
     };
@@ -20,7 +21,8 @@ macro_rules! m {
 #[cfg(feature = "current")]
 macro_rules! m {
     ($key: path, locale = $locale: expr, $($name: ident $(=> $value: expr)*),+) => {
-        <$key as $crate::MessageKey>::get($locale, $key {$(
+        use $key as __MESSAGE;
+        <$key as $crate::MessageKey>::get($locale, __MESSAGE {$(
             $name $(: $value)*,
         )+})
     };
@@ -29,11 +31,12 @@ macro_rules! m {
         <$key as $crate::MessageKey>::get($locale, ())
     };
     ($key: path, $($name: ident $(=> $value: expr)*),+) => {{
+        use $key as __MESSAGE;
         match &*$crate::locale::CURRENT_LANGUAGE {
-            Some(language) => <$key as $crate::MessageKey>::get(language.clone(), $key { $(
+            Some(language) => <$key as $crate::MessageKey>::get(language.clone(), __MESSAGE { $(
             $name $(: $value)*,
         )+ }),
-            None => <$key as $crate::MessageKey>::default($key { $(
+            None => <$key as $crate::MessageKey>::default(__MESSAGE { $(
             $name $(: $value)*,
         )+ }),
         }
