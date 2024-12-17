@@ -9,7 +9,12 @@ impl LoadedEntry {
 
         let name = match path.file_stem() {
             Some(name) => name.to_string_lossy().to_string(),
-            None => return Err(Error::new("invalid path")),
+            None => {
+                return Err(Error::new(format_args!(
+                    "invalid path \"{}\", missing name",
+                    path.display()
+                )))
+            }
         };
 
         if path.is_file() {
